@@ -40,6 +40,7 @@
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
 | <span style="color:#0051ae;font-weight:bold;">🚀 🎯 (Active)</span> | **<span style="color:#0051ae;">#15 (Active)</span>** | **Adopt dual-branch git workflow (`main-dev` staging -> `main` sync)** | 🟢 **In Progress** | `main-dev` branch / docs |
+| 💊 | **#16 (Queued)** | Investigate medication max 24h capacity limits & unit scale validation | 💡 Queued | `LibraryView.tsx`, `LogEditor.tsx`, `meds.ts` |
 | 🔏 | **Commit Verification** | Configure SSH commit signing for verified badges (Key title in notes) | ✅ **COMPLETED (2026-11-14 17:18 EST)** | Cloud git config / GitHub keys (`1decf1b`) |
 | 🛡️ | **#14 (Queued)** | Enable IP security log & MFA enforcement borrowing KC Rhythm architecture | 💡 Queued (Child of #12) | `functions/index.js`, `SecurityLogView.tsx` |
 | 🥇 | **#7 (High)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
