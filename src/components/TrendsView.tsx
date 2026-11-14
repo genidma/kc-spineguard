@@ -140,21 +140,87 @@ export function TrendsView() {
     return ps.length ? (ps.reduce((a, b) => a + b, 0) / ps.length).toFixed(1) : '-';
   }, [windowLogs]);
 
-  const weeklyStretches = useMemo(() => {
-    const weeks = new Map<string, number>();
-    for (const d of daily) {
-      const dt = new Date(d.day + 'T00:00:00');
-      const offset = settings.weekStart === 'monday' ? (dt.getDay() + 6) % 7 : dt.getDay();
-      dt.setDate(dt.getDate() - offset);
-      const wk = dayKey(dt).slice(5);
-      weeks.set(wk, (weeks.get(wk) ?? 0) + d.stretchMin);
-    }
-    return [...weeks.entries()].map(([week, minutes]) => ({ week, minutes }));
-  }, [daily, settings.weekStart]);
-
   const falls = useMemo(() => windowLogs.filter((l) => l.type === 'fall') as Array<typeof windowLogs[number] & { data: FallData }>, [windowLogs]);
   const hasWeight = daily.some((d) => d.weight !== null);
   const hasMoodOrCog = daily.some((d) => d.mood !== null || d.brainFog !== null || d.focus !== null);
+
+  // Map stretch ID/name to a recognizable clinical emoji
+  const getStretchEmoji = (id?: string, name?: string) => {
+    const s = `${id || ''} ${name || ''}`.toLowerCase();
+    if (s.includes('squat') || s.includes('malasana')) return '🧘';
+    if (s.includes('knee') && s.includes('chest')) return '🦵';
+    if (s.includes('piriformis')) return '🎯';
+    if (s.includes('nerve') || s.includes('glide') || s.includes('floss')) return '⚡';
+    if (s.includes('twist')) return '🔄';
+    if (s.includes('cat') || s.includes('cow')) return '🐈';
+    if (s.includes('child')) return '🙇';
+    if (s.includes('hamstring')) return '🎗️';
+    if (s.includes('pelvic') || s.includes('tilt')) return '⚖️';
+    if (s.includes('press') || s.includes('mckenzie')) return '🦭';
+    return '🤸';
+  };
+
+  // Adaptive stretch chart data:
+  // For short views (<= 7 days): Group by day (or intraday for 1d)
+  // For longer views (> 7 days): Group by week
+  const isWeeklyGroup = days > 7;
+  const stretchTimeline = useMemo(() => {
+    if (isWeeklyGroup) {
+      const weeks = new Map<string, number>();
+      for (const d of daily) {
+        const dt = new Date(d.day + 'T00:00:00');
+        const offset = settings.weekStart === 'monday' ? (dt.getDay() + 6) % 7 : dt.getDay();
+        dt.setDate(dt.getDate() - offset);
+        const wk = dayKey(dt).slice(5);
+        weeks.set(wk, (weeks.get(wk) ?? 0) + d.stretchMin);
+      }
+      return [...weeks.entries()].map(([label, minutes]) => ({ label, minutes }));
+    }
+
+    if (days === 1) {
+      // 1-day intraday stretch entries
+      const stretchLogs = windowLogs
+        .filter((l) => l.type === 'stretch')
+        .slice()
+        .reverse();
+      if (stretchLogs.length === 0) return [{ label: 'Today', minutes: 0 }];
+      return stretchLogs.map((l) => {
+        const dt = new Date(l.at);
+        const sd = l.data as StretchData;
+        const emoji = getStretchEmoji(sd.stretchId, sd.stretchName);
+        return {
+          label: `${emoji} ${dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
+          minutes: Math.round(((sd.durationSec ?? 0) / 60) * 10) / 10,
+          name: sd.stretchName || 'Stretch',
+        };
+      });
+    }
+
+    // 2d, 3d, 7d: Daily breakdown
+    return daily.map((d) => ({
+      label: d.label,
+      minutes: d.stretchMin,
+    }));
+  }, [daily, days, isWeeklyGroup, settings.weekStart, windowLogs]);
+
+  // Stretches performed today / current window with tiny emojis
+  const recentStretches = useMemo(() => {
+    return windowLogs
+      .filter((l) => l.type === 'stretch')
+      .slice(0, 10)
+      .map((l) => {
+        const sd = l.data as StretchData;
+        return {
+          id: l.id,
+          at: l.at,
+          emoji: getStretchEmoji(sd.stretchId, sd.stretchName),
+          name: sd.stretchName || 'Custom Stretch',
+          durationSec: sd.durationSec ?? 0,
+          reps: sd.reps,
+          sets: sd.sets,
+        };
+      });
+  }, [windowLogs]);
 
   // For short granular views (1d, 2d, 3d), render individual timestamped entries
   // so entries at 12:00 vs 12:20 don't overwrite or compress each other into a single day dot.
@@ -257,14 +323,19 @@ export function TrendsView() {
           </div>
 
           <div className={`${card} p-5`}>
-            <h3 className="text-sm font-black uppercase tracking-wider text-[#424753] dark:text-gray-300 mb-3">
-              Stretch minutes per week
-            </h3>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-black uppercase tracking-wider text-[#424753] dark:text-gray-300">
+                Stretch minutes
+              </h3>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
+                {isWeeklyGroup ? 'Weekly total' : days === 1 ? 'Intraday' : 'Daily'}
+              </span>
+            </div>
             <div className="h-52">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={weeklyStretches}>
+                <BarChart data={stretchTimeline}>
                   <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-                  <XAxis dataKey="week" tick={{ fontSize: 11 }} />
+                  <XAxis dataKey="label" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip />
                   <Bar dataKey="minutes" name="Minutes" fill="#059669" radius={[6, 6, 0, 0]} />
@@ -272,6 +343,50 @@ export function TrendsView() {
               </ResponsiveContainer>
             </div>
           </div>
+
+          {recentStretches.length > 0 && (
+            <div className={`${card} p-5`}>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-black uppercase tracking-wider text-[#424753] dark:text-gray-300">
+                  Daily Stretches {days === 1 ? '(Today)' : `(Last ${days}d)`}
+                </h3>
+                <span className="text-xs font-bold text-[#88909f]">
+                  {recentStretches.length} {recentStretches.length === 1 ? 'session' : 'sessions'}
+                </span>
+              </div>
+              <div className="space-y-2">
+                {recentStretches.map((s) => (
+                  <div
+                    key={s.id}
+                    className="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-[#f0f4fc]/60 dark:bg-gray-800/50 border border-[#e4e8f0]/60 dark:border-gray-700/60"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span className="text-lg shrink-0" role="img" aria-label={s.name}>
+                        {s.emoji}
+                      </span>
+                      <div className="min-w-0">
+                        <div className="text-sm font-bold truncate text-slate-800 dark:text-slate-200">
+                          {s.name}
+                        </div>
+                        <div className="text-xs text-[#88909f]">
+                          {[
+                            s.durationSec ? `${Math.round(s.durationSec / 60 * 10) / 10} min (${s.durationSec}s)` : null,
+                            s.reps ? `${s.reps} reps` : null,
+                            s.sets ? `${s.sets} sets` : null,
+                          ]
+                            .filter(Boolean)
+                            .join(' · ')}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-xs font-semibold text-[#88909f] shrink-0">
+                      {fmtDate(s.at)} · {fmtTime(s.at)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {hasWeight && (
             <div className={`${card} p-5`}>
