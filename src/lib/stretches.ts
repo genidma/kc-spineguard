@@ -4,6 +4,21 @@ import type { Stretch } from './types';
 // stop if a stretch causes sharp, shooting or worsening leg pain.
 export const BUILT_IN_STRETCHES: Stretch[] = [
   {
+    id: 'deep-squat',
+    name: 'Deep flat-foot squat (Malasana)',
+    target: 'Hips, ankles, lower back decompression',
+    holdSeconds: 30,
+    reps: 3,
+    sets: 1,
+    builtIn: true,
+    steps: [
+      'Stand with feet shoulder-width apart, toes turned slightly outward.',
+      'Lower your hips into a deep squat, keeping both heels planted flat on the floor.',
+      'Bring palms together at heart center, pressing elbows gently against inner knees to open hips.',
+      'Keep your spine elongated and chest lifted. Breathe deeply and hold. (Use a heel wedge or doorframe support if tight).',
+    ],
+  },
+  {
     id: 'knee-to-chest',
     name: 'Knee-to-chest',
     target: 'Lower back, glutes',
