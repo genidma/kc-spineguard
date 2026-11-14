@@ -158,25 +158,27 @@ export function TrendsView() {
 
   return (
     <div>
-      <PageHeader
-        title="Trends"
-        subtitle={days === 1 ? 'Last 24 hours / Today' : `Last ${days} days`}
-        right={
-          <Chips
-            options={[
-              { value: '1', label: '1d' },
-              { value: '2', label: '2d' },
-              { value: '3', label: '3d' },
-              { value: '7', label: '7d' },
-              { value: '30', label: '30d' },
-              { value: '90', label: '90d' },
-              { value: '180', label: '180d' },
-            ]}
-            value={String(days)}
-            onChange={(v) => setDays(Number(v) as Range)}
-          />
-        }
-      />
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5 pr-28 sm:pr-32">
+        <div className="text-xs font-black uppercase tracking-widest text-[#424753] dark:text-gray-400">
+          {days === 1 ? 'Last 24 hours · Today' : `Last ${days} days`}
+        </div>
+      </div>
+
+      <div className="mb-6 overflow-x-auto -mx-1 px-1 pb-1">
+        <Chips
+          options={[
+            { value: '1', label: '1d' },
+            { value: '2', label: '2d' },
+            { value: '3', label: '3d' },
+            { value: '7', label: '7d' },
+            { value: '30', label: '30d' },
+            { value: '90', label: '90d' },
+            { value: '180', label: '180d' },
+          ]}
+          value={String(days)}
+          onChange={(v) => setDays(Number(v) as Range)}
+        />
+      </div>
 
       <div className="grid grid-cols-3 gap-3 mb-6">
         <div className={`${card} p-4`}>
