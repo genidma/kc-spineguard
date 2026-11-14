@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  background-color: #f7f9ff;
+  color: #171c22;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.dark {
+  background-color: #0f1419;
+  color: white;
+  color-scheme: dark;
+}
+
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  min-height: 100vh;
+}
+
+/* Range slider tinted to the pain scale */
+input[type="range"].pain-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #10b981 0%, #eab308 45%, #f97316 70%, #dc2626 100%);
+  outline: none;
+}
+input[type="range"].pain-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: white;
+  border: 3px solid #0051ae;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+input[type="range"].pain-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: white;
+  border: 3px solid #0051ae;
+  cursor: pointer;
+}

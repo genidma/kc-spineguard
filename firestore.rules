@@ -1,0 +1,79 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function optStr(d, k, max) {
+      return !d.keys().hasAny([k]) || (d[k] is string && d[k].size() <= max);
+    }
+
+    // ---- Logs: one collection, discriminated by `type` ----
+    function isValidLog(d, logId) {
+      return d.keys().hasOnly(['id', 'type', 'at', 'data', 'notes', 'createdAt', 'updatedAt'])
+        && d.keys().hasAll(['id', 'type', 'at', 'data'])
+        && d.id == logId
+        && d.type in ['weight', 'stretch', 'posture', 'pain', 'painMgmt', 'med', 'mood', 'cognition', 'fall']
+        && d.at is string && d.at.size() >= 16 && d.at.size() <= 40
+        && d.data is map && d.data.size() <= 30
+        && optStr(d, 'notes', 4000)
+        && optStr(d, 'createdAt', 64)
+        && optStr(d, 'updatedAt', 64);
+    }
+
+    function isValidMed(d, medId) {
+      return d.keys().hasOnly(['id', 'name', 'kind', 'strength', 'unit', 'typicalDose', 'maxDailyDose',
+                               'minHoursBetween', 'scheduleTimes', 'active', 'notes', 'createdAt', 'updatedAt'])
+        && d.keys().hasAll(['id', 'name', 'kind', 'unit', 'active'])
+        && d.id == medId
+        && d.name is string && d.name.size() > 0 && d.name.size() <= 120
+        && d.kind is string && d.kind.size() <= 40
+        && d.unit is string && d.unit.size() <= 20
+        && d.active is bool
+        && (!d.keys().hasAny(['maxDailyDose']) || d.maxDailyDose == null || d.maxDailyDose is number)
+        && (!d.keys().hasAny(['minHoursBetween']) || d.minHoursBetween == null || d.minHoursBetween is number)
+        && (!d.keys().hasAny(['scheduleTimes']) || (d.scheduleTimes is list && d.scheduleTimes.size() <= 12))
+        && optStr(d, 'notes', 2000);
+    }
+
+    function isValidStretch(d, sid) {
+      return d.keys().hasOnly(['id', 'name', 'target', 'steps', 'holdSeconds', 'reps', 'sets', 'createdAt', 'updatedAt'])
+        && d.keys().hasAll(['id', 'name'])
+        && d.id == sid
+        && d.name is string && d.name.size() > 0 && d.name.size() <= 120
+        && (!d.keys().hasAny(['steps']) || (d.steps is list && d.steps.size() <= 20));
+    }
+
+    match /users/{userId} {
+      // Profile + MFA (same as kc-rhythm)
+      allow read, write: if isOwner(userId);
+
+      match /logs/{logId} {
+        allow read, delete: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidLog(request.resource.data, logId);
+      }
+
+      match /medications/{medId} {
+        allow read, delete: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidMed(request.resource.data, medId);
+      }
+
+      match /stretches/{sid} {
+        allow read, delete: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidStretch(request.resource.data, sid);
+      }
+
+      // Written only by the logUserIP Cloud Function (Admin SDK bypasses rules).
+      match /security_log/{entryId} {
+        allow read: if isOwner(userId);
+        allow write: if false;
+      }
+    }
+
+    match /settings/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+  }
+}
