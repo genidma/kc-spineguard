@@ -9,25 +9,25 @@
 ## 🎯 Current Operational Focus
 
 ```diff
-+ ╔══════════════════════════════════════════════════════════════════════════╗
++ ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 16:45 EST / 21:45 UTC                        │  ║
-! ║  │ 🚨👉 [ACTION REQUIRED]: #12 — Open Source Preparation & Public Switch │  ║
-+ ║  │ Status: ✅ Argon Approved — Awaiting User Approval to Make Public     │  ║
-+ ║  │ Branch Context: main                                                  │  ║
-+ ║  │ Active Repo: https://github.com/genidma/kc-spineguard                 │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 16:50 EST / 21:50 UTC                       │  ║
+! ║  │ 🚨👉 [ACTION REQUIRED]: #12 — Open Source Preparation & Public Switch│  ║
++ ║  │ Status: ✅ Argon Approved — Awaiting User Approval to Make Public    │  ║
++ ║  │ Branch Context: main                                                 │  ║
++ ║  │ Active Repo: https://github.com/genidma/kc-spineguard                │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
-+ ╚══════════════════════════════════════════════════════════════════════════╝
-+ ╔══════════════════════════════════════════════════════════════════════════╗
++ ╚════════════════════════════════════════════════════════════════════════════╝
++ ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 1: #14 — IP Log & MFA (Rhythm Architecture)          │  ║
++ ║  │ 🎯 NEXT PRIORITY 1: #14 — IP Log & MFA (Rhythm Architecture)         │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
-+ ╚══════════════════════════════════════════════════════════════════════════╝
-+ ╔══════════════════════════════════════════════════════════════════════════╗
++ ╚════════════════════════════════════════════════════════════════════════════╝
++ ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 2: #7 — Cognition Tracker & Trends Redesign          │  ║
++ ║  │ 🎯 NEXT PRIORITY 2: #7 — Cognition Tracker & Trends Redesign         │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
-+ ╚══════════════════════════════════════════════════════════════════════════╝
++ ╚════════════════════════════════════════════════════════════════════════════╝
 ```
 
 > [!IMPORTANT]
@@ -46,6 +46,8 @@
 | :---: | :--- | :--- | :--- | :--- |
 | <span style="color:#ff8c00;"><u>*<b>⚡ [ACTION REQUIRED]</b>*</u></span> | **<span style="color:#ff8c00;"><u>*<b>#12 (Active)</b>*</u></span>** | <span style="color:#ff8c00;"><u>*<b>Open source preparation: MIT license & monetization strategy</b>*</u></span> | <span style="color:#ff8c00;"><u>*<b>[AWAITING YOUR APPROVAL]</b>*</u></span> | `LICENSE`, `firestore.rules`, public launch |
 | 🛡️ | **#14 (Queued)** | Enable IP security log & MFA enforcement borrowing KC Rhythm architecture | 💡 Queued (Child of #12) | `functions/index.js`, `SecurityLogView.tsx` |
+| 🌐 | **Personal Repo Showcase** | Update `@genidma` profile README with kc-spineguard screenshot & link | 💡 Queued | `genidma/genidma` personal repo |
+| 🔏 | **Commit Verification** | Configure GPG / SSH commit signing so cloud-pushed commits show "Verified" | 💡 Queued | Cloud git config / GitHub keys |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
 | 🥉 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
