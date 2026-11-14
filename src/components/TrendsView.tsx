@@ -20,7 +20,7 @@ import { summarize } from '../lib/logMeta';
 import type { CognitionData, FallData, MoodData, PainData, StretchData, WeightData } from '../lib/types';
 import { Chips, Empty, PageHeader, SectionTitle, card } from './ui';
 
-type Range = 7 | 30 | 90;
+type Range = 1 | 2 | 3 | 7 | 30 | 90 | 180;
 
 export function TrendsView() {
   const { logs, settings, ensureRange } = useAppData();
@@ -160,13 +160,17 @@ export function TrendsView() {
     <div>
       <PageHeader
         title="Trends"
-        subtitle={`Last ${days} days`}
+        subtitle={days === 1 ? 'Last 24 hours / Today' : `Last ${days} days`}
         right={
           <Chips
             options={[
+              { value: '1', label: '1d' },
+              { value: '2', label: '2d' },
+              { value: '3', label: '3d' },
               { value: '7', label: '7d' },
               { value: '30', label: '30d' },
               { value: '90', label: '90d' },
+              { value: '180', label: '180d' },
             ]}
             value={String(days)}
             onChange={(v) => setDays(Number(v) as Range)}
