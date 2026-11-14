@@ -33,13 +33,18 @@
 > [!IMPORTANT]
 > **v1.1.0 Released:** The `v1.1.0` release has been successfully tagged, documented with woven screenshots, and published on GitHub at [v1.1.0 Release](https://github.com/genidma/kc-spineguard/releases/tag/v1.1.0).
 
+> [!WARNING]
+> ### 🔴 CURRENT OPERATIONAL TARGET (NEEDS ATTENTION)
+> **#12: Open Source Preparation (MIT License & Audit)**  
+> **Status:** ✅ **Argon Approved** — Ready for final confirmation to execute: `gh repo edit genidma/kc-spineguard --visibility public`
+
 ---
 
 ### 📋 High-Level Action Checklist
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| 🔴👉 🚀 | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | ✅ Argon Approved (Ready for Public Switch) | `LICENSE`, `firestore.rules`, public launch |
+| **`🔴 ATTENTION`** | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | **`🟡 READY FOR PUBLIC SWITCH`** | `LICENSE`, `firestore.rules`, public launch |
 | 🛡️ | **#14 (Queued)** | Enable IP security log & MFA enforcement borrowing KC Rhythm architecture | 💡 Queued (Child of #12) | `functions/index.js`, `SecurityLogView.tsx` |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
