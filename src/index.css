@@ -105,3 +105,46 @@ input[type="range"].pain-range::-moz-range-thumb {
   transform-origin: 50% 60%;
 }
 
+/* Malasana Dynamic Squat Kinetic Animation */
+/* Cycle: Stand (0-20%) -> Descend (20-35%) -> Deep Hold (35-85%) -> Rise (85-95%) -> Rest (95-100%) */
+@keyframes malasana-squat-cycle {
+  0%, 15% {
+    transform: translateY(0px) scaleY(1);
+  }
+  30% {
+    transform: translateY(22px) scaleY(0.72);
+  }
+  35%, 85% {
+    transform: translateY(24px) scaleY(0.68);
+  }
+  92% {
+    transform: translateY(4px) scaleY(0.96);
+  }
+  100% {
+    transform: translateY(0px) scaleY(1);
+  }
+}
+
+@keyframes malasana-knees-flare {
+  0%, 15% {
+    transform: scaleX(1);
+  }
+  35%, 85% {
+    transform: scaleX(1.45);
+  }
+  95%, 100% {
+    transform: scaleX(1);
+  }
+}
+
+.malasana-torso-anim {
+  animation: malasana-squat-cycle 10s ease-in-out infinite;
+  transform-origin: 50% 90px;
+}
+
+.malasana-legs-anim {
+  animation: malasana-knees-flare 10s ease-in-out infinite;
+  transform-origin: 50% 90px;
+}
+
+

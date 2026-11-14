@@ -1,13 +1,20 @@
 // Biomechanical clinical SVG illustrations & animations for guided sciatica stretches.
 import React from 'react';
 
-export function StretchVisual({ stretchId, active = false }: { stretchId: string; active?: boolean }) {
+export function StretchVisual({
+  stretchId,
+  active = false,
+  progressPhase,
+}: {
+  stretchId: string;
+  active?: boolean;
+  progressPhase?: number; // 0 to 1 cycle phase
+}) {
   const stroke = 'currentColor';
   const accent = '#0051ae';
   
-  // Stretches requested for matrix-style 360 horizontal rotation:
-  // 'deep-squat' (Malasana) and 'seated-twist' (Spinal twist)
-  const isMatrixSpin = stretchId === 'deep-squat' || stretchId === 'seated-twist';
+  // Matrix 360 horizontal rotation requested for seated-twist
+  const isMatrixSpin = stretchId === 'seated-twist';
   
   const animClass = isMatrixSpin
     ? 'matrix-360-anim'
@@ -16,26 +23,38 @@ export function StretchVisual({ stretchId, active = false }: { stretchId: string
       : 'stretch-ambient-anim';
 
   switch (stretchId) {
-    case 'deep-squat':
+    case 'deep-squat': {
+      // Dynamic kinetic squat calculation:
+      // If progressPhase is provided (e.g. from step-synced timer), use it.
+      // Otherwise animate dynamically via malasana CSS keyframes.
       return (
-        <svg viewBox="0 0 100 100" className={`w-full h-full text-slate-700 dark:text-slate-200 ${animClass}`}>
+        <svg viewBox="0 0 100 100" className="w-full h-full text-slate-700 dark:text-slate-200">
           {/* Ground level */}
           <line x1="15" y1="90" x2="85" y2="90" stroke={stroke} strokeWidth="2" strokeDasharray="3 3" opacity="0.4" />
-          {/* Feet flat on floor */}
-          <line x1="24" y1="90" x2="38" y2="90" stroke={stroke} strokeWidth="4" strokeLinecap="round" />
-          <line x1="62" y1="90" x2="76" y2="90" stroke={stroke} strokeWidth="4" strokeLinecap="round" />
-          {/* Legs & knees bent wide in deep squat */}
-          <path d="M 28 90 L 22 65 L 42 75" fill="none" stroke={stroke} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M 72 90 L 78 65 L 58 75" fill="none" stroke={stroke} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-          {/* Pelvis & elongated spine */}
-          <path d="M 42 75 Q 50 78 58 75" fill="none" stroke={accent} strokeWidth="4" strokeLinecap="round" />
-          <path d="M 50 76 L 50 44" fill="none" stroke={stroke} strokeWidth="3.5" strokeLinecap="round" />
-          {/* Head & neck */}
-          <circle cx="50" cy="34" r="7" fill="none" stroke={stroke} strokeWidth="3" />
-          {/* Hands together in prayer/balance */}
-          <path d="M 50 50 L 44 58 L 50 60 L 56 58 Z" fill="none" stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+          
+          {/* Flat feet anchored on floor */}
+          <line x1="22" y1="90" x2="38" y2="90" stroke={stroke} strokeWidth="4" strokeLinecap="round" />
+          <line x1="62" y1="90" x2="78" y2="90" stroke={stroke} strokeWidth="4" strokeLinecap="round" />
+
+          {/* Articulated knees & hips flaring outward as hips lower */}
+          <g className={progressPhase === undefined ? 'malasana-legs-anim' : ''}>
+            <path d="M 28 90 L 22 65 L 42 75" fill="none" stroke={stroke} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 72 90 L 78 65 L 58 75" fill="none" stroke={stroke} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+
+          {/* Descending & rising Torso, Head, and Prayer hands */}
+          <g className={progressPhase === undefined ? 'malasana-torso-anim' : ''}>
+            {/* Pelvis & elongated spine */}
+            <path d="M 42 75 Q 50 78 58 75" fill="none" stroke={accent} strokeWidth="4" strokeLinecap="round" />
+            <path d="M 50 76 L 50 44" fill="none" stroke={stroke} strokeWidth="3.5" strokeLinecap="round" />
+            {/* Head & neck */}
+            <circle cx="50" cy="34" r="7" fill="none" stroke={stroke} strokeWidth="3" />
+            {/* Prayer hands at heart center */}
+            <path d="M 50 50 L 44 58 L 50 60 L 56 58 Z" fill="none" stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" />
+          </g>
         </svg>
       );
+    }
 
     case 'knee-to-chest':
       return (

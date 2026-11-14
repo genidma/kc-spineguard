@@ -245,6 +245,29 @@ function StretchesTab() {
   const { uid, stretches } = useAppData();
   const [active, setActive] = useState<Stretch | null>(null);
   const [adding, setAdding] = useState(false);
+  const [activeCardStep, setActiveCardStep] = useState(0);
+
+  // Synchronize Malasana 10-second squat loop with steps:
+  // Step 0: Stand (0-2s)
+  // Step 1: Lower into squat (2-3.5s)
+  // Step 2: Prayer palms / elbows inner knees (3.5-5.5s)
+  // Step 3: Hold spine elongated / breathe (5.5-9s)
+  useEffect(() => {
+    const start = Date.now();
+    const interval = setInterval(() => {
+      const elapsed = (Date.now() - start) % 10000;
+      if (elapsed < 2000) {
+        setActiveCardStep(0);
+      } else if (elapsed < 3500) {
+        setActiveCardStep(1);
+      } else if (elapsed < 5500) {
+        setActiveCardStep(2);
+      } else {
+        setActiveCardStep(3);
+      }
+    }, 200);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="space-y-4">
@@ -286,7 +309,20 @@ function StretchesTab() {
               {s.steps && s.steps.length > 0 && (
                 <ol className="text-xs text-[#424753] dark:text-gray-300 mt-2 space-y-1 list-decimal list-inside">
                   {s.steps.map((st, i) => (
-                    <li key={i}>{st}</li>
+                    <li
+                      key={i}
+                      className={
+                        s.id === 'deep-squat'
+                          ? `transition-all duration-300 rounded px-1.5 py-0.5 ${
+                              activeCardStep === i
+                                ? 'bg-[#0051ae]/10 text-[#0051ae] dark:bg-[#0051ae]/30 dark:text-blue-300 font-bold border border-[#0051ae]/30 shadow-xs'
+                                : 'opacity-70'
+                            }`
+                          : ''
+                      }
+                    >
+                      {st}
+                    </li>
                   ))}
                 </ol>
               )}
@@ -391,9 +427,34 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
 
         {stretch.steps && stretch.steps.length > 0 && (
           <ol className="text-sm text-[#424753] dark:text-gray-300 space-y-1.5 list-decimal list-inside">
-            {stretch.steps.map((st, i) => (
-              <li key={i}>{st}</li>
-            ))}
+            {stretch.steps.map((st, i) => {
+              // Highlight step based on hold progression or posture stage:
+              // For Malasana: step 0 (setup) -> step 1 (descent) -> step 2 (alignment) -> step 3 (sustained hold)
+              const isMalasana = stretch.id === 'deep-squat';
+              const currentStepIndex = isMalasana
+                ? !running
+                  ? 0
+                  : secondsLeft > hold - 2
+                    ? 1
+                    : secondsLeft > hold - 5
+                      ? 2
+                      : 3
+                : -1;
+              const isHighlight = currentStepIndex === i;
+
+              return (
+                <li
+                  key={i}
+                  className={`transition-all duration-300 rounded-lg px-2.5 py-1.5 ${
+                    isHighlight
+                      ? 'bg-[#0051ae]/10 text-[#0051ae] dark:bg-[#0051ae]/30 dark:text-blue-300 font-bold border border-[#0051ae]/30 shadow-xs scale-[1.01]'
+                      : 'opacity-70'
+                  }`}
+                >
+                  {st}
+                </li>
+              );
+            })}
           </ol>
         )}
 
