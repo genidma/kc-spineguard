@@ -38,6 +38,7 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
+| 🚀 | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | 🟢 In Progress | `LICENSE`, `package.json`, public launch |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
 | 🥉 | **#9 (High)** | 3D anatomical body map with pinpoint pain & clinical agent supervision | 💡 Queued | Profile 3D Body Map, Multi-Agent Engine |
