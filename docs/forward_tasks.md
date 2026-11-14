@@ -40,11 +40,12 @@
 | :---: | :--- | :--- | :--- | :--- |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
-| 🥉 | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
-| 4️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
-| 5️⃣ | **#6 (Completed)** | Add deep flat-foot squat (Malasana / Asian squat) to stretch library | 🟢 Closed Candidate | `src/lib/stretches.ts`, Library & Log |
-| 6️⃣ | **#8 (Completed)** | Animated SVG & CSS clinical illustrations for stretch library | 🟢 Closed Candidate | `src/components/StretchVisual.tsx`, Library |
-| 7️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
+| 🥉 | **#9 (High / New)** | 3D anatomical body map with pinpoint pain & clinical agent supervision | 💡 Queued | Profile 3D Body Map, Multi-Agent Engine |
+| 4️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
+| 5️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
+| 6️⃣ | **#6 (Completed)** | Add deep flat-foot squat (Malasana / Asian squat) to stretch library | 🟢 Closed Candidate | `src/lib/stretches.ts`, Library & Log |
+| 7️⃣ | **#8 (Completed)** | Animated SVG & CSS clinical illustrations for stretch library | 🟢 Closed Candidate | `src/components/StretchVisual.tsx`, Library |
+| 8️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 
 ---
 
