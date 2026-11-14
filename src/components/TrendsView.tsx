@@ -156,6 +156,33 @@ export function TrendsView() {
   const hasWeight = daily.some((d) => d.weight !== null);
   const hasMoodOrCog = daily.some((d) => d.mood !== null || d.brainFog !== null || d.focus !== null);
 
+  // For short granular views (1d, 2d, 3d), render individual timestamped entries
+  // so entries at 12:00 vs 12:20 don't overwrite or compress each other into a single day dot.
+  const moodCogTimeline = useMemo(() => {
+    if (days > 3) return daily;
+    const items = windowLogs
+      .filter((l) => l.type === 'mood' || l.type === 'cognition')
+      .slice()
+      .reverse(); // chronological (oldest to newest)
+    
+    if (items.length === 0) return daily;
+
+    return items.map((l) => {
+      const dt = new Date(l.at);
+      const timeStr = dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const label = days === 1 ? timeStr : `${dt.getMonth() + 1}/${dt.getDate()} ${timeStr}`;
+      const isMood = l.type === 'mood';
+      const m = isMood ? (l.data as MoodData) : null;
+      const c = !isMood ? (l.data as CognitionData) : null;
+      return {
+        label,
+        mood: m ? m.score : null,
+        focus: c ? c.focus : null,
+        brainFog: c ? c.brainFog : null,
+      };
+    });
+  }, [days, daily, windowLogs]);
+
   return (
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5 pr-28 sm:pr-32">
@@ -280,15 +307,15 @@ export function TrendsView() {
               </h3>
               <div className="h-52">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={daily}>
+                  <LineChart data={moodCogTimeline}>
                     <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
                     <XAxis dataKey="label" tick={{ fontSize: 11 }} />
                     <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 11 }} />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="mood" name="Mood" stroke="#d97706" strokeWidth={2} connectNulls />
-                    <Line type="monotone" dataKey="focus" name="Focus" stroke="#4f46e5" strokeWidth={2} connectNulls />
-                    <Line type="monotone" dataKey="brainFog" name="Brain fog" stroke="#dc2626" strokeWidth={2} strokeDasharray="3 3" connectNulls />
+                    <Line type="monotone" dataKey="mood" name="Mood" stroke="#d97706" strokeWidth={2} connectNulls dot={{ r: 4, fill: '#d97706' }} />
+                    <Line type="monotone" dataKey="focus" name="Focus" stroke="#4f46e5" strokeWidth={2} connectNulls dot={{ r: 3, fill: '#4f46e5' }} />
+                    <Line type="monotone" dataKey="brainFog" name="Brain fog" stroke="#dc2626" strokeWidth={2} strokeDasharray="3 3" connectNulls dot={{ r: 3, fill: '#dc2626' }} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
