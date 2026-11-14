@@ -7,6 +7,9 @@
 
 A personal sciatica management web app built with React, Vite, TypeScript, Tailwind CSS, and Firebase (Auth, Cloud Firestore with offline persistence, Cloud Functions, Hosting) — matching the architecture and profile settings patterns of `kc-rhythm`.
 
+- **Live Production App:** [https://kc-spineguard.web.app](https://kc-spineguard.web.app)
+- **Latest Release:** [v1.1.0](https://github.com/genidma/kc-spineguard/releases/tag/v1.1.0)
+
 ## Features
 
 - **9 Log Types:** Pain (0–10 NRS, personal threshold, chronic/flare/acute, left/right body map, qualities, triggers), Pain Meds (medication class/kind, rolling-24h max & min-gap warnings), Pain Management (heat, ice, TENS, physio, etc.), Stretches, Posture, Weight, Mood, Cognition (focus, brain fog, memory), and Falls.
