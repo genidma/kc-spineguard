@@ -45,3 +45,9 @@ Then run `npm run dev`.
 - `npm run test:unit` — Vitest unit tests
 - `npm run build` — Production build (`vite build`)
 - `npm run test` — Playwright E2E tests
+
+## Contributing
+
+We follow a staging-first dual-branch git workflow:
+- All pull requests and feature contributions must target the **`main-dev`** branch (not `main`).
+- Changes undergo verification and testing on `main-dev` before being promoted to `main` for release.
