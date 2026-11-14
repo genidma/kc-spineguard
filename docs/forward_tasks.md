@@ -60,6 +60,7 @@
 
 ### 🏆 Recently Completed Milestones
 
+- [x] **Issue #14 Open vs. Closed Item Ledger Snapshot**: Performed comprehensive checklist item audit across all open containers in Issue #14, tabulating 8 completed vs. 13 open items ([#14 Comment](https://github.com/genidma/kc-spineguard/issues/14#issuecomment-6886092752)) at **November 14, 2026 — 6:47 PM EST / 23:47 UTC** (`6886092752`).
 - [x] **Dual-Branch Staging Workflow (Issue #15)**: Created and published `main-dev` branch to origin, updated repository contributing guidelines in README to direct all PRs and development to `main-dev` first prior to `main` release promotion at **November 14, 2026 — 5:43 PM EST / 22:43 UTC** (`5d3828f`).
 - [x] **Commit Signing & Verification**: Generated dedicated cloud SSH signing key (`kc-spineguard cloud signing key for agy cloud project`), persisted in `~/.gemini/git_keys/`, enabled local repository signing with verified badge (`1decf1b`) at **November 14, 2026 — 5:18 PM EST / 22:18 UTC**.
 - [x] **Personal Profile Showcase ([genidma/genidma#4](https://github.com/genidma/genidma/issues/4))**: Showcased `kc-spineguard` on `@genidma` personal GitHub profile README with Today recovery dashboard and Asian squat / Malasana kinematic timer screenshots (`fd095b6`) at **November 14, 2026 — 5:06 PM EST / 22:06 UTC**.
