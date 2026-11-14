@@ -6,7 +6,7 @@ import { deleteCustomStretch, deleteMedication, saveCustomStretch, saveMedicatio
 import { chime } from '../lib/reminders';
 import { MED_KINDS, type Medication, type Stretch } from '../lib/types';
 import { Chips, Empty, Field, Modal, PageHeader, TextInput, btnGhost, btnPrimary, card, inputCls } from './ui';
-import { StretchVisual } from './StretchVisual';
+import { StretchVisual, getMalasanaStepFromCycle } from './StretchVisual';
 
 export function LibraryView() {
   const [tab, setTab] = useState<'meds' | 'stretches'>('meds');
@@ -245,27 +245,13 @@ function StretchesTab() {
   const { uid, stretches } = useAppData();
   const [active, setActive] = useState<Stretch | null>(null);
   const [adding, setAdding] = useState(false);
-  const [activeCardStep, setActiveCardStep] = useState(0);
+  const [activeCardStep, setActiveCardStep] = useState(() => getMalasanaStepFromCycle(Date.now()));
 
-  // Synchronize Malasana 10-second squat loop with steps:
-  // Step 0: Stand (0-2s)
-  // Step 1: Lower into squat (2-3.5s)
-  // Step 2: Prayer palms / elbows inner knees (3.5-5.5s)
-  // Step 3: Hold spine elongated / breathe (5.5-9s)
+  // Synchronize Malasana 10-second squat loop with exact step kinematics:
   useEffect(() => {
-    const start = Date.now();
     const interval = setInterval(() => {
-      const elapsed = (Date.now() - start) % 10000;
-      if (elapsed < 2000) {
-        setActiveCardStep(0);
-      } else if (elapsed < 3500) {
-        setActiveCardStep(1);
-      } else if (elapsed < 5500) {
-        setActiveCardStep(2);
-      } else {
-        setActiveCardStep(3);
-      }
-    }, 200);
+      setActiveCardStep(getMalasanaStepFromCycle(Date.now()));
+    }, 120);
     return () => clearInterval(interval);
   }, []);
 
@@ -354,12 +340,21 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [repDone, setRepDone] = useState(0);
+  const [modalCycleStep, setModalCycleStep] = useState(() => getMalasanaStepFromCycle(Date.now()));
 
   useEffect(() => {
     setSecondsLeft(stretch?.holdSeconds ?? 30);
     setRunning(false);
     setElapsed(0);
     setRepDone(0);
+  }, [stretch]);
+
+  useEffect(() => {
+    if (!stretch || stretch.id !== 'deep-squat') return;
+    const id = setInterval(() => {
+      setModalCycleStep(getMalasanaStepFromCycle(Date.now()));
+    }, 120);
+    return () => clearInterval(id);
   }, [stretch]);
 
   useEffect(() => {
@@ -428,12 +423,10 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
         {stretch.steps && stretch.steps.length > 0 && (
           <ol className="text-sm text-[#424753] dark:text-gray-300 space-y-1.5 list-decimal list-inside">
             {stretch.steps.map((st, i) => {
-              // Highlight step based on hold progression or posture stage:
-              // For Malasana: step 0 (setup) -> step 1 (descent) -> step 2 (alignment) -> step 3 (sustained hold)
               const isMalasana = stretch.id === 'deep-squat';
               const currentStepIndex = isMalasana
                 ? !running
-                  ? 0
+                  ? modalCycleStep
                   : secondsLeft > hold - 2
                     ? 1
                     : secondsLeft > hold - 5
@@ -448,7 +441,9 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
                   className={`transition-all duration-300 rounded-lg px-2.5 py-1.5 ${
                     isHighlight
                       ? 'bg-[#0051ae]/10 text-[#0051ae] dark:bg-[#0051ae]/30 dark:text-blue-300 font-bold border border-[#0051ae]/30 shadow-xs scale-[1.01]'
-                      : 'opacity-70'
+                      : isMalasana
+                        ? 'opacity-70'
+                        : ''
                   }`}
                 >
                   {st}
