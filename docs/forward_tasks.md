@@ -11,21 +11,21 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 17:40 EST / 22:40 UTC                        │  ║
-! ║  │ 🎯 PRIMARY TARGET: #16 — Med Max 24h Capacity Limits & Unit Scale     │  ║
-+ ║  │ Status: 🟢 Ready for implementation                                   │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 17:45 EST / 22:45 UTC                        │  ║
+! ║  │ 🎯 PRIMARY TARGET: #14 — IP Log & MFA Enforcement (KC Rhythm)         │  ║
++ ║  │ Status: 🟢 Ready for implementation on main-dev                       │  ║
 + ║  │ Branch Context: main-dev                                              │  ║
-+ ║  │ Target: LibraryView.tsx, LogEditor.tsx, meds.ts                       │  ║
++ ║  │ Target: functions/index.js, SecurityLogView.tsx, MFA gate             │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
 + ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 1: #15 — Complete Staging Workflow Docs              │  ║
++ ║  │ 🎯 NEXT PRIORITY 1: #16 — Med Max 24h Capacity Limits & Validation    │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
 + ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 2: #14 — IP Log & MFA Enforcement (KC Rhythm)        │  ║
++ ║  │ 🎯 NEXT PRIORITY 2: #7 — Cognition Tracker & Trends Redesign          │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
 + ╚════════════════════════════════════════════════════════════════════════════╝
 ```
@@ -39,10 +39,10 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| <span style="color:#0051ae;font-weight:bold;">🚀 🎯 (Active)</span> | **<span style="color:#0051ae;">#16 (Highest)</span>** | **Investigate medication max 24h capacity limits & unit scale validation** | 🟢 **Ready to Implement** | `LibraryView.tsx`, `LogEditor.tsx`, `meds.ts` |
-| 🌿 | **#15 (In Progress)** | Adopt dual-branch git workflow (`main-dev` staging -> `main` sync) | 🟢 In Progress | `main-dev` branch / docs |
+| <span style="color:#0051ae;font-weight:bold;">🚀 🎯 (Active)</span> | **<span style="color:#0051ae;">#14 (Highest)</span>** | **Enable IP security log & MFA enforcement borrowing KC Rhythm architecture** | 🟢 **Ready to Implement** | `functions/index.js`, `SecurityLogView.tsx` |
+| 💊 | **#16 (Queued)** | Investigate medication max 24h capacity limits & unit scale validation | 💡 Queued | `LibraryView.tsx`, `LogEditor.tsx`, `meds.ts` |
+| 🌿 | **#15 (Completed)** | Adopt dual-branch git workflow (`main-dev` staging -> `main` sync) | ✅ **COMPLETED (2026-11-14 17:43 EST)** | `main-dev` created & README updated |
 | 🔏 | **Commit Verification** | Configure SSH commit signing for verified badges (Key title in notes) | ✅ **COMPLETED (2026-11-14 17:18 EST)** | Cloud git config / GitHub keys (`1decf1b`) |
-| 🛡️ | **#14 (Queued)** | Enable IP security log & MFA enforcement borrowing KC Rhythm architecture | 💡 Queued (Child of #12) | `functions/index.js`, `SecurityLogView.tsx` |
 | 🥇 | **#7 (High)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🌐 | **Personal Repo Showcase** | Showcase `kc-spineguard` with Today Dashboard & Asian Squat screenshots ([genidma/genidma#4](https://github.com/genidma/genidma/issues/4)) | ✅ **COMPLETED (2026-11-14 17:06 EST)** | `genidma/genidma` profile README (`fd095b6`) |
 | 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
@@ -59,6 +59,7 @@
 
 ### 🏆 Recently Completed Milestones
 
+- [x] **Dual-Branch Staging Workflow (Issue #15)**: Created and published `main-dev` branch to origin, updated repository contributing guidelines in README to direct all PRs and development to `main-dev` first prior to `main` release promotion at **November 14, 2026 — 5:43 PM EST / 22:43 UTC** (`5d3828f`).
 - [x] **Commit Signing & Verification**: Generated dedicated cloud SSH signing key (`kc-spineguard cloud signing key for agy cloud project`), persisted in `~/.gemini/git_keys/`, enabled local repository signing with verified badge (`1decf1b`) at **November 14, 2026 — 5:18 PM EST / 22:18 UTC**.
 - [x] **Personal Profile Showcase ([genidma/genidma#4](https://github.com/genidma/genidma/issues/4))**: Showcased `kc-spineguard` on `@genidma` personal GitHub profile README with Today recovery dashboard and Asian squat / Malasana kinematic timer screenshots (`fd095b6`) at **November 14, 2026 — 5:06 PM EST / 22:06 UTC**.
 - [x] **v1.1.0-Cycle: Issue #12 (Open Source Release & Public Visibility Switch)**: Transitioned repository visibility from Private to **PUBLIC** on GitHub with standard MIT License (2026, `genidma`), hardened `.gitignore`, and dual-agent security audit sign-off at **November 14, 2026 — 4:52 PM EST / 21:52 UTC** (`3b30365`) 🌐🎉🏆
