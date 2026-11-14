@@ -269,6 +269,43 @@ export function TrendsView() {
     });
   }, [days, daily, windowLogs]);
 
+  // Similarly for weight: on short ranges (1d, 2d, 3d), render each timestamped weight log
+  // so multiple entries in a day don't overwrite each other.
+  const weightTimeline = useMemo(() => {
+    if (days > 3) return daily;
+    const items = windowLogs
+      .filter((l) => l.type === 'weight')
+      .slice()
+      .reverse(); // chronological (oldest to newest)
+
+    if (items.length === 0) return daily;
+
+    return items.map((l) => {
+      const dt = new Date(l.at);
+      const timeStr = dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const label = days === 1 ? timeStr : `${dt.getMonth() + 1}/${dt.getDate()} ${timeStr}`;
+      const w = l.data as WeightData;
+      const val =
+        w.unit === settings.weightUnit
+          ? w.value
+          : settings.weightUnit === 'kg'
+            ? w.value * 0.45359237
+            : w.value / 0.45359237;
+      return {
+        day: dt.toISOString().slice(0, 10),
+        label,
+        avgPain: null,
+        maxPain: null,
+        medCount: 0,
+        stretchMin: 0,
+        weight: Math.round(val * 10) / 10,
+        mood: null,
+        brainFog: null,
+        focus: null,
+      };
+    });
+  }, [days, daily, windowLogs, settings.weightUnit]);
+
   return (
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5 pr-28 sm:pr-32">
@@ -434,7 +471,7 @@ export function TrendsView() {
               </h3>
               <div className="h-52">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={daily}>
+                  <LineChart data={weightTimeline}>
                     <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
                     <XAxis dataKey="label" tick={{ fontSize: 11 }} />
                     <YAxis domain={['auto', 'auto']} tick={{ fontSize: 11 }} />
