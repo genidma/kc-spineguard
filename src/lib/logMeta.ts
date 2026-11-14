@@ -60,7 +60,7 @@ export const FALL_CAUSES = ['leg gave way', 'numbness', 'pain spike', 'tripped',
   label: v[0].toUpperCase() + v.slice(1),
 }));
 
-export const POSTURE_AIDS = ['lumbar roll', 'standing desk', 'cushion', 'brace', 'footrest', 'pillow between knees'].map((v) => ({
+export const POSTURE_AIDS = ['lumbar roll', 'standing desk', 'cushion', 'brace', 'footrest', 'pillow between knees', 'exercise ball'].map((v) => ({
   value: v,
   label: v[0].toUpperCase() + v.slice(1),
 }));
