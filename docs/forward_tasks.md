@@ -9,15 +9,15 @@
 ## 🎯 Current Operational Focus
 
 ```diff
-+ ╔════════════════════════════════════════════════════════════════════════════╗
-+ ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 16:34 EST / 21:34 UTC                       │  ║
-+ ║  │ 🔴👉 🎯 PRIMARY TARGET: #12 — Open Source Prep (MIT License & Audit) │  ║
-+ ║  │    Status: ✅ Argon Approved — Ready for Public Visibility Switch    │  ║
-+ ║  │    Branch Context: main                                              │  ║
-+ ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
-+ ║  └──────────────────────────────────────────────────────────────────────┘  ║
-+ ╚════════════════════════════════════════════════════════════════════════════╝
+- ╔════════════════════════════════════════════════════════════════════════════╗
+- ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
+- ║  │ ⏰ TIMESTAMP: 2026-11-14 16:40 EST / 21:40 UTC                       │  ║
+- ║  │ 🚨👉 [ACTION REQUIRED]: #12 — Open Source Preparation & Public Switch │  ║
+- ║  │    Status: ✅ Argon Approved — Awaiting User Approval to Make Public  │  ║
+- ║  │    Branch Context: main                                              │  ║
+- ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
+- ║  └──────────────────────────────────────────────────────────────────────┘  ║
+- ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
 + ║  │ 🎯 NEXT PRIORITY 1: #14 — IP Log & MFA (Rhythm)│ ║
@@ -44,7 +44,7 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| **`🔴 ATTENTION`** | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | **`🟡 READY FOR PUBLIC SWITCH`** | `LICENSE`, `firestore.rules`, public launch |
+| <span style="color:red;font-weight:bold;">🚨 [NEEDS YOU]</span> | **<span style="color:red;">#12 (Active)</span>** | <span style="color:red;font-weight:bold;">Open source preparation: MIT license & monetization strategy</span> | <span style="color:red;font-weight:bold;">[AWAITING YOUR APPROVAL]</span> | `LICENSE`, `firestore.rules`, public launch |
 | 🛡️ | **#14 (Queued)** | Enable IP security log & MFA enforcement borrowing KC Rhythm architecture | 💡 Queued (Child of #12) | `functions/index.js`, `SecurityLogView.tsx` |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
