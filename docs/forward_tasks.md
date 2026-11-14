@@ -11,11 +11,11 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 17:08 EST / 22:08 UTC                        │  ║
-! ║  │ 🎯 PRIMARY TARGET: Commit Verification (GPG / SSH Verified Badge)     │  ║
-+ ║  │ Status: 🟢 Ready for configuration                                    │  ║
-+ ║  │ Branch Context: main                                                  │  ║
-+ ║  │ Target: Cloud git signing / GitHub trusted keys                       │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 17:25 EST / 22:25 UTC                        │  ║
+! ║  │ 🎯 PRIMARY TARGET: #15 — Adopt main-dev Staging Git Workflow          │  ║
++ ║  │ Status: 🟢 Branch main-dev created; documenting workflow              │  ║
++ ║  │ Branch Context: main-dev                                              │  ║
++ ║  │ Target: Staging on main-dev -> approval -> sync to main               │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
 + ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔════════════════════════════════════════════════════════════════════════════╗
@@ -39,7 +39,8 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| <span style="color:#0051ae;font-weight:bold;">🚀 🎯 (Active)</span> | **<span style="color:#0051ae;">Commit Verification</span>** | **Configure GPG / SSH commit signing so cloud-pushed commits show "Verified"** | 🟢 **Ready for Configuration** | Cloud git config / GitHub keys |
+| <span style="color:#0051ae;font-weight:bold;">🚀 🎯 (Active)</span> | **<span style="color:#0051ae;">#15 (Active)</span>** | **Adopt dual-branch git workflow (`main-dev` staging -> `main` sync)** | 🟢 **In Progress** | `main-dev` branch / docs |
+| 🔏 | **Commit Verification** | Configure SSH commit signing for verified badges (Key title in notes) | ✅ **COMPLETED (2026-11-14 17:18 EST)** | Cloud git config / GitHub keys (`1decf1b`) |
 | 🛡️ | **#14 (Queued)** | Enable IP security log & MFA enforcement borrowing KC Rhythm architecture | 💡 Queued (Child of #12) | `functions/index.js`, `SecurityLogView.tsx` |
 | 🥇 | **#7 (High)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🌐 | **Personal Repo Showcase** | Showcase `kc-spineguard` with Today Dashboard & Asian Squat screenshots ([genidma/genidma#4](https://github.com/genidma/genidma/issues/4)) | ✅ **COMPLETED (2026-11-14 17:06 EST)** | `genidma/genidma` profile README (`fd095b6`) |
@@ -57,6 +58,7 @@
 
 ### 🏆 Recently Completed Milestones
 
+- [x] **Commit Signing & Verification**: Generated dedicated cloud SSH signing key (`kc-spineguard cloud signing key for agy cloud project`), persisted in `~/.gemini/git_keys/`, enabled local repository signing with verified badge (`1decf1b`) at **November 14, 2026 — 5:18 PM EST / 22:18 UTC**.
 - [x] **Personal Profile Showcase ([genidma/genidma#4](https://github.com/genidma/genidma/issues/4))**: Showcased `kc-spineguard` on `@genidma` personal GitHub profile README with Today recovery dashboard and Asian squat / Malasana kinematic timer screenshots (`fd095b6`) at **November 14, 2026 — 5:06 PM EST / 22:06 UTC**.
 - [x] **v1.1.0-Cycle: Issue #12 (Open Source Release & Public Visibility Switch)**: Transitioned repository visibility from Private to **PUBLIC** on GitHub with standard MIT License (2026, `genidma`), hardened `.gitignore`, and dual-agent security audit sign-off at **November 14, 2026 — 4:52 PM EST / 21:52 UTC** (`3b30365`) 🌐🎉🏆
 - [x] **v1.1.0 Production Release Cut**: Official release tagged with high-res Playwright screenshots, automated visual walkthrough, and full changelog ([v1.1.0](https://github.com/genidma/kc-spineguard/releases/tag/v1.1.0)) ✅
