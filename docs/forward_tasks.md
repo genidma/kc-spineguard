@@ -46,7 +46,7 @@
 | 🔏 | **Commit Verification** | Configure SSH commit signing for verified badges (Key title in notes) | ✅ **COMPLETED (2026-11-14 17:18 EST)** | Cloud git config / GitHub keys (`1decf1b`) |
 | 🥇 | **#7 (High)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🌐 | **Personal Repo Showcase** | Showcase `kc-spineguard` with Today Dashboard & Asian Squat screenshots ([genidma/genidma#4](https://github.com/genidma/genidma/issues/4)) | ✅ **COMPLETED (2026-11-14 17:06 EST)** | `genidma/genidma` profile README (`fd095b6`) |
-| 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
+| 🥈 | **#13 (Completed)** | Add exercise ball as an ergonomic aid under Log Posture | ✅ **COMPLETED (2026-11-14 18:53 EST)** | PR #17 merged (`3adf624`) |
 | 🥉 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
 | 4️⃣ | **#9 (High)** | 3D anatomical body map with pinpoint pain & clinical agent supervision | 💡 Queued | Profile 3D Body Map, Multi-Agent Engine |
 | 5️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
@@ -60,6 +60,7 @@
 
 ### 🏆 Recently Completed Milestones
 
+- [x] **Ergonomic Posture Aids: Exercise Ball (Issue #13)**: Added stability / exercise ball option to `POSTURE_AIDS` in `src/lib/logMeta.ts`, verified modal chip rendering and build, merged via PR #17 into `main-dev` and fast-forwarded to `main` at **November 14, 2026 — 6:53 PM EST / 23:53 UTC** (`3adf624`).
 - [x] **Repository-Wide Checklist Item Count Ledgers**: Executed comprehensive item audit across all 12 open issues (#1–#16), publishing signed Open vs. Closed Snapshots and open-item balance sheets across all containers at **November 14, 2026 — 6:50 PM EST / 23:50 UTC** (`task-255`).
 - [x] **Dual-Branch Staging Workflow (Issue #15)**: Created and published `main-dev` branch to origin, updated repository contributing guidelines in README to direct all PRs and development to `main-dev` first prior to `main` release promotion at **November 14, 2026 — 5:43 PM EST / 22:43 UTC** (`5d3828f`).
 - [x] **Commit Signing & Verification**: Generated dedicated cloud SSH signing key (`kc-spineguard cloud signing key for agy cloud project`), persisted in `~/.gemini/git_keys/`, enabled local repository signing with verified badge (`1decf1b`) at **November 14, 2026 — 5:18 PM EST / 22:18 UTC**.
