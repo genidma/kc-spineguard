@@ -203,24 +203,44 @@ export function TrendsView() {
     }));
   }, [daily, days, isWeeklyGroup, settings.weekStart, windowLogs]);
 
-  // Stretches performed today / current window with tiny emojis
-  const recentStretches = useMemo(() => {
+  // Stretches performed in the past 24 hours for the Daily Stretches card & graph
+  const past24hStretches = useMemo(() => {
+    const oneDayAgo = Date.now() - 24 * 3600 * 1000;
     return windowLogs
-      .filter((l) => l.type === 'stretch')
-      .slice(0, 10)
+      .filter((l) => l.type === 'stretch' && new Date(l.at).getTime() >= oneDayAgo)
       .map((l) => {
         const sd = l.data as StretchData;
+        const mins = Math.round(((sd.durationSec ?? 0) / 60) * 10) / 10;
         return {
           id: l.id,
           at: l.at,
           emoji: getStretchEmoji(sd.stretchId, sd.stretchName),
           name: sd.stretchName || 'Custom Stretch',
+          minutes: mins,
           durationSec: sd.durationSec ?? 0,
           reps: sd.reps,
           sets: sd.sets,
         };
       });
   }, [windowLogs]);
+
+  // Visual breakdown graph data for the 24h daily stretches (by stretch type)
+  const dailyStretchChartData = useMemo(() => {
+    const map = new Map<string, { name: string; emoji: string; minutes: number; count: number }>();
+    for (const s of past24hStretches) {
+      const existing = map.get(s.name) || { name: s.name, emoji: s.emoji, minutes: 0, count: 0 };
+      existing.minutes = Math.round((existing.minutes + s.minutes) * 10) / 10;
+      existing.count += 1;
+      map.set(s.name, existing);
+    }
+    return [...map.values()].map((item) => ({
+      label: `${item.emoji} ${item.name}`,
+      name: item.name,
+      emoji: item.emoji,
+      minutes: item.minutes,
+      count: item.count,
+    }));
+  }, [past24hStretches]);
 
   // For short granular views (1d, 2d, 3d), render individual timestamped entries
   // so entries at 12:00 vs 12:20 don't overwrite or compress each other into a single day dot.
@@ -344,18 +364,37 @@ export function TrendsView() {
             </div>
           </div>
 
-          {recentStretches.length > 0 && (
+          {past24hStretches.length > 0 && (
             <div className={`${card} p-5`}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-black uppercase tracking-wider text-[#424753] dark:text-gray-300">
-                  Daily Stretches {days === 1 ? '(Today)' : `(Last ${days}d)`}
+                  Daily Stretches (Past 24h)
                 </h3>
                 <span className="text-xs font-bold text-[#88909f]">
-                  {recentStretches.length} {recentStretches.length === 1 ? 'session' : 'sessions'}
+                  {past24hStretches.length} {past24hStretches.length === 1 ? 'session' : 'sessions'}
                 </span>
               </div>
+
+              {/* Graphical Visual Breakdown for Past 24h Stretches */}
+              <div className="h-44 mb-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={dailyStretchChartData} layout="vertical" margin={{ left: 10, right: 20, top: 5, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" opacity={0.2} horizontal={false} />
+                    <XAxis type="number" unit="m" tick={{ fontSize: 11 }} />
+                    <YAxis type="category" dataKey="label" width={110} tick={{ fontSize: 11 }} />
+                    <Tooltip
+                      formatter={(val: any, _name: any, item: any) => [
+                        `${val} min (${item.payload.count} ${item.payload.count === 1 ? 'session' : 'sessions'})`,
+                        'Duration',
+                      ]}
+                    />
+                    <Bar dataKey="minutes" name="Minutes" fill="#059669" radius={[0, 6, 6, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+
               <div className="space-y-2">
-                {recentStretches.map((s) => (
+                {past24hStretches.map((s) => (
                   <div
                     key={s.id}
                     className="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-[#f0f4fc]/60 dark:bg-gray-800/50 border border-[#e4e8f0]/60 dark:border-gray-700/60"
@@ -370,7 +409,7 @@ export function TrendsView() {
                         </div>
                         <div className="text-xs text-[#88909f]">
                           {[
-                            s.durationSec ? `${Math.round(s.durationSec / 60 * 10) / 10} min (${s.durationSec}s)` : null,
+                            s.durationSec ? `${s.minutes} min (${s.durationSec}s)` : null,
                             s.reps ? `${s.reps} reps` : null,
                             s.sets ? `${s.sets} sets` : null,
                           ]

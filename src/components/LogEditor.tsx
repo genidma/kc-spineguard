@@ -121,8 +121,10 @@ function LogForm({ type, existing, onClose, prefill }: LogEditorProps) {
     switch (type) {
       case 'weight':
         return Number(data.value) > 0;
-      case 'stretch':
-        return !!data.stretchId;
+      case 'stretch': {
+        const mins = data.durationSec !== undefined ? data.durationSec / 60 : 0;
+        return !!data.stretchId && mins >= 0.5 && mins <= 999;
+      }
       case 'med':
         return !!data.medicationId && Number(data.dose) > 0 && (!hasWarning || ack);
       default:
@@ -202,13 +204,17 @@ function LogForm({ type, existing, onClose, prefill }: LogEditorProps) {
             <Field label="Reps">
               <TextInput type="number" min="0" value={data.reps ?? ''} onChange={(e) => set({ reps: num(e.target.value) })} />
             </Field>
-            <Field label="Minutes">
+            <Field label="Minutes (required, 0.5 – 999)">
               <TextInput
                 type="number"
-                min="0"
-                step="0.5"
+                inputMode="decimal"
+                min="0.5"
+                max="999"
+                step="any"
+                placeholder="e.g. 1.5"
+                required
                 value={data.durationSec ? data.durationSec / 60 : ''}
-                onChange={(e) => set({ durationSec: e.target.value ? Math.round(Number(e.target.value) * 60) : undefined })}
+                onChange={(e) => set({ durationSec: e.target.value !== '' ? Math.round(Number(e.target.value) * 60) : undefined })}
               />
             </Field>
           </div>
