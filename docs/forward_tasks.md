@@ -11,7 +11,7 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 12:38 EST / 17:38 UTC                       │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 12:44 EST / 17:44 UTC                       │  ║
 + ║  │ 🎯 PRIMARY TARGET: #6 — Add Deep Flat-Foot Squat (Malasana) Stretch  │  ║
 + ║  │    Branch Context: main                                              │  ║
 + ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
@@ -24,10 +24,15 @@
 + ╚═════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 2: #2 — Weight & Ratio Target │  ║
++ ║  │ 🎯 NEXT PRIORITY 2: #8 — Stretch Animations   │  ║
 + ║  └───────────────────────────────────────────────┘  ║
 + ╚═════════════════════════════════════════════════╝
 ```
+
+> [!IMPORTANT]
+> **End-of-Session Release Guardrail:** The `v1.1.0` release will be cut at the conclusion of today's working session when the agent receives explicit user approval (or provides a wrapping reminder).
+
+---
 
 ### 📋 High-Level Action Checklist
 
@@ -35,10 +40,11 @@
 | :---: | :--- | :--- | :--- | :--- |
 | 🥇 | **#6 (Highest)** | Add deep flat-foot squat (Malasana / Asian squat) to stretch library | 🟢 Ready | `src/lib/stretches.ts`, Library & Log |
 | 🥈 | **#7 (High)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟡 Backlog | LogEditor, TrendsView (relates to #5) |
-| 🥉 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
-| 4️⃣ | **#5 (Under Review)** | Investigate mood & cognition multiple entries per day behavior | 🟡 Under Review | Closed candidate pending user testing |
-| 5️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
-| 6️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
+| 🥉 | **#8 (Medium)** | Animated SVG & CSS clinical illustrations for stretch library | 🟡 Backlog | `docs/stretch_animations_design.md` |
+| 4️⃣ | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
+| 5️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
+| 6️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
+| 7️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 
 ---
 
@@ -72,7 +78,15 @@
   - Address scale inversion dilemma for brain fog (clear vs foggy polarity)
   - Prevent visual overlap between mood and 3 cognitive metrics
 
-### 3. #2 — Track Weight Against Height & Gender Ratio
+### 3. #8 — Animated SVG & CSS Stretch Illustrations
+- **In-Issue Search String ➡️ :** `'[STRETCH-ANIMATIONS]'`
+- **Assignee:** `@genidma` (Lead) / `AGY` (Antigravity)
+- **Status:** 🟡 Backlog
+- **Key Deliverables:**
+  - Reference architecture documented in `docs/stretch_animations_design.md`
+  - Reusable vector animation component for stretch library cards & timer
+
+### 4. #2 — Track Weight Against Height & Gender Ratio
 - **In-Issue Search String ➡️ :** `'[TRACK-WEIGHT-RATIO]'`
 - **Assignee:** `@genidma` (Lead) / `AGY` (Antigravity)
 - **Status:** 🟡 Backlog
@@ -82,23 +96,6 @@
   - Gender-adjusted healthy target weight calculation (Devine/Robinson IBW + BMI band)
   - Visual target band on the Weight Trends chart
   - Distance-to-target indicator on the Weight quick-log modal
-
-### 4. #3 — Multi-Factor Authentication (MFA) Hardening
-- **In-Issue Search String ➡️ :** `'[MFA-HARDENING]'`
-- **Assignee:** `@genidma` (Lead) / `AGY` (Antigravity)
-- **Status:** 🟡 Backlog (Medium Priority)
-- **Key Deliverables:**
-  - Audit client-side TOTP session tokens
-  - Evaluate Firebase Identity Platform native MFA options
-  - Refine recovery code redemption flow
-
-### 5. #1 — IP Security Log Cloud Function Deployment
-- **In-Issue Search String ➡️ :** `'[IP-SECURITY-LOG]'`
-- **Assignee:** `@genidma` (Lead)
-- **Status:** ⏸️ On Hold (Waiting for Firebase Blaze plan upgrade)
-- **Key Deliverables:**
-  - Upgrade Firebase project to Blaze
-  - Deploy `logUserIP` Cloud Function via `firebase deploy --only functions`
 
 ---
 
