@@ -11,3 +11,5 @@ ui-debug.log*
 test-results/
 playwright-report/
 functions/node_modules
+*firebase-adminsdk*.json
+serviceAccountKey.json
