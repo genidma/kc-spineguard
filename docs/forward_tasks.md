@@ -38,7 +38,7 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| 🚀 | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | 🟢 In Progress | `LICENSE`, `package.json`, public launch |
+| 📌👉 🚀 | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | 🟢 Ready for Argon | `LICENSE`, `package.json`, public launch |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
 | 🥉 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
