@@ -1,5 +1,10 @@
 # kc-spineguard
 
+> [!IMPORTANT]
+> **Medical Disclaimer & Early Pre-Release Notice:**
+> - **Not Medical Advice:** kc-spineguard is a personal health tracking tool and **does not replace professional medical advice, diagnosis, or treatment**. Always consult your physician, physical therapist, or qualified healthcare provider regarding any spine, nerve, or musculoskeletal condition. Seek urgent emergency care immediately for "red flag" symptoms such as sudden progressive leg weakness, saddle anesthesia (numbness in the groin/buttocks), or loss of bowel/bladder control.
+> - **Early Release:** This application is in an early stage of release and may contain bugs or undergo rapid feature iterations. Please report issues and feedback on GitHub.
+
 A personal sciatica management web app built with React, Vite, TypeScript, Tailwind CSS, and Firebase (Auth, Cloud Firestore with offline persistence, Cloud Functions, Hosting) — matching the architecture and profile settings patterns of `kc-rhythm`.
 
 ## Features
