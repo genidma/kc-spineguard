@@ -135,6 +135,6 @@
 - **Production URL:** [https://kc-spineguard.web.app](https://kc-spineguard.web.app)
 - **Active Release:** [v1.1.0](https://github.com/genidma/kc-spineguard/releases/tag/v1.1.0)
 - **Cloud Commit Signing Metadata:**
-  - **GitHub Key Title:** `kc-spineguard cloud signing key for agy clou project`
+  - **GitHub Key Title:** `kc-spineguard cloud signing key for agy cloud project`
   - **Key Type:** `Signing Key` (Ed25519)
   - **Persistence Location:** `~/.gemini/git_keys/id_ed25519_kc_signing` (Persisted across sessions; never tracked in public git repo)
