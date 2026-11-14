@@ -9,15 +9,15 @@
 ## 🎯 Current Operational Focus
 
 ```diff
-- ╔════════════════════════════════════════════════════════════════════════════╗
-- ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-- ║  │ ⏰ TIMESTAMP: 2026-11-14 16:40 EST / 21:40 UTC                       │  ║
-- ║  │ 🚨👉 [ACTION REQUIRED]: #12 — Open Source Preparation & Public Switch │  ║
-- ║  │    Status: ✅ Argon Approved — Awaiting User Approval to Make Public  │  ║
-- ║  │    Branch Context: main                                              │  ║
-- ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
-- ║  └──────────────────────────────────────────────────────────────────────┘  ║
-- ╚════════════════════════════════════════════════════════════════════════════╝
++ ╔════════════════════════════════════════════════════════════════════════════╗
++ ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 16:42 EST / 21:42 UTC                       │  ║
+! ║  │ 🚨👉 [ACTION REQUIRED]: #12 — Open Source Preparation & Public Switch │  ║
++ ║  │    Status: ✅ Argon Approved — Awaiting User Approval to Make Public  │  ║
++ ║  │    Branch Context: main                                              │  ║
++ ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
++ ║  └──────────────────────────────────────────────────────────────────────┘  ║
++ ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
 + ║  │ 🎯 NEXT PRIORITY 1: #14 — IP Log & MFA (Rhythm)│ ║
@@ -33,8 +33,8 @@
 > [!IMPORTANT]
 > **v1.1.0 Released:** The `v1.1.0` release has been successfully tagged, documented with woven screenshots, and published on GitHub at [v1.1.0 Release](https://github.com/genidma/kc-spineguard/releases/tag/v1.1.0).
 
-> [!WARNING]
-> ### 🔴 CURRENT OPERATIONAL TARGET (NEEDS ATTENTION)
+> [!NOTE]
+> ### <span style="color:#ff8c00;"><u>*<b>⚡ CURRENT OPERATIONAL TARGET (ACTION REQUIRED)</b>*</u></span>
 > **#12: Open Source Preparation (MIT License & Audit)**  
 > **Status:** ✅ **Argon Approved** — Ready for final confirmation to execute: `gh repo edit genidma/kc-spineguard --visibility public`
 
@@ -44,7 +44,7 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| <span style="color:red;font-weight:bold;">🚨 [NEEDS YOU]</span> | **<span style="color:red;">#12 (Active)</span>** | <span style="color:red;font-weight:bold;">Open source preparation: MIT license & monetization strategy</span> | <span style="color:red;font-weight:bold;">[AWAITING YOUR APPROVAL]</span> | `LICENSE`, `firestore.rules`, public launch |
+| <span style="color:#ff8c00;"><u>*<b>⚡ [ACTION REQUIRED]</b>*</u></span> | **<span style="color:#ff8c00;"><u>*<b>#12 (Active)</b>*</u></span>** | <span style="color:#ff8c00;"><u>*<b>Open source preparation: MIT license & monetization strategy</b>*</u></span> | <span style="color:#ff8c00;"><u>*<b>[AWAITING YOUR APPROVAL]</b>*</u></span> | `LICENSE`, `firestore.rules`, public launch |
 | 🛡️ | **#14 (Queued)** | Enable IP security log & MFA enforcement borrowing KC Rhythm architecture | 💡 Queued (Child of #12) | `functions/index.js`, `SecurityLogView.tsx` |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
