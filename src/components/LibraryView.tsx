@@ -6,7 +6,7 @@ import { deleteCustomStretch, deleteMedication, saveCustomStretch, saveMedicatio
 import { chime } from '../lib/reminders';
 import { MED_KINDS, type Medication, type Stretch } from '../lib/types';
 import { Chips, Empty, Field, Modal, PageHeader, TextInput, btnGhost, btnPrimary, card, inputCls } from './ui';
-import { StretchVisual, getMalasanaStepFromCycle } from './StretchVisual';
+import { StretchVisual, getStretchActiveStep } from './StretchVisual';
 
 export function LibraryView() {
   const [tab, setTab] = useState<'meds' | 'stretches'>('meds');
@@ -245,12 +245,12 @@ function StretchesTab() {
   const { uid, stretches } = useAppData();
   const [active, setActive] = useState<Stretch | null>(null);
   const [adding, setAdding] = useState(false);
-  const [activeCardStep, setActiveCardStep] = useState(() => getMalasanaStepFromCycle(Date.now()));
+  const [nowMs, setNowMs] = useState(() => Date.now());
 
-  // Synchronize Malasana 10-second squat loop with exact step kinematics:
+  // Synchronize step highlights with exact motion & camera orbit cycles:
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveCardStep(getMalasanaStepFromCycle(Date.now()));
+      setNowMs(Date.now());
     }, 120);
     return () => clearInterval(interval);
   }, []);
@@ -262,62 +262,66 @@ function StretchesTab() {
       </button>
 
       <div className="grid sm:grid-cols-2 gap-3">
-        {stretches.map((s) => (
-          <div key={s.id} className={`${card} p-4 flex flex-col justify-between gap-3`}>
-            <div>
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="font-black text-base flex items-center gap-2">
-                  <StretchHorizontal className="w-4 h-4 text-emerald-600 shrink-0" />
-                  {s.name}
-                </h3>
-                {!s.builtIn && (
-                  <button
-                    type="button"
-                    onClick={() => confirm(`Delete ${s.name}?`) && deleteCustomStretch(uid, s.id)}
-                    className="text-[#88909f] hover:text-red-600"
-                    aria-label={`Delete ${s.name}`}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+        {stretches.map((s) => {
+          const activeStepIdx = getStretchActiveStep(s.id, nowMs);
+          const hasStepSync = activeStepIdx !== -1;
+          return (
+            <div key={s.id} className={`${card} p-4 flex flex-col justify-between gap-3`}>
+              <div>
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-black text-base flex items-center gap-2">
+                    <StretchHorizontal className="w-4 h-4 text-emerald-600 shrink-0" />
+                    {s.name}
+                  </h3>
+                  {!s.builtIn && (
+                    <button
+                      type="button"
+                      onClick={() => confirm(`Delete ${s.name}?`) && deleteCustomStretch(uid, s.id)}
+                      className="text-[#88909f] hover:text-red-600"
+                      aria-label={`Delete ${s.name}`}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+                <div className="my-2 p-2 bg-[#f0f4fc] dark:bg-gray-700/50 rounded-2xl flex items-center justify-center stretch-container-3d overflow-hidden">
+                  <div className="w-28 h-28">
+                    <StretchVisual stretchId={s.id} />
+                  </div>
+                </div>
+                {s.target && <p className="text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-1">{s.target}</p>}
+                <p className="text-xs text-[#424753] dark:text-gray-400 mt-1">
+                  {[s.sets ? `${s.sets} sets` : null, s.reps ? `${s.reps} reps` : null, s.holdSeconds ? `${s.holdSeconds}s hold` : null]
+                    .filter(Boolean)
+                    .join(' · ')}
+                </p>
+                {s.steps && s.steps.length > 0 && (
+                  <ol className="text-xs text-[#424753] dark:text-gray-300 mt-2 space-y-1 list-decimal list-inside">
+                    {s.steps.map((st, i) => (
+                      <li
+                        key={i}
+                        className={
+                          hasStepSync
+                            ? `transition-all duration-300 rounded px-1.5 py-0.5 ${
+                                activeStepIdx === i
+                                  ? 'bg-[#0051ae]/10 text-[#0051ae] dark:bg-[#0051ae]/30 dark:text-blue-300 font-bold border border-[#0051ae]/30 shadow-xs'
+                                  : 'opacity-70'
+                              }`
+                            : ''
+                        }
+                      >
+                        {st}
+                      </li>
+                    ))}
+                  </ol>
                 )}
               </div>
-              <div className="my-2 p-2 bg-[#f0f4fc] dark:bg-gray-700/50 rounded-2xl flex items-center justify-center stretch-container-3d overflow-hidden">
-                <div className="w-28 h-28">
-                  <StretchVisual stretchId={s.id} />
-                </div>
-              </div>
-              {s.target && <p className="text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-1">{s.target}</p>}
-              <p className="text-xs text-[#424753] dark:text-gray-400 mt-1">
-                {[s.sets ? `${s.sets} sets` : null, s.reps ? `${s.reps} reps` : null, s.holdSeconds ? `${s.holdSeconds}s hold` : null]
-                  .filter(Boolean)
-                  .join(' · ')}
-              </p>
-              {s.steps && s.steps.length > 0 && (
-                <ol className="text-xs text-[#424753] dark:text-gray-300 mt-2 space-y-1 list-decimal list-inside">
-                  {s.steps.map((st, i) => (
-                    <li
-                      key={i}
-                      className={
-                        s.id === 'deep-squat'
-                          ? `transition-all duration-300 rounded px-1.5 py-0.5 ${
-                              activeCardStep === i
-                                ? 'bg-[#0051ae]/10 text-[#0051ae] dark:bg-[#0051ae]/30 dark:text-blue-300 font-bold border border-[#0051ae]/30 shadow-xs'
-                                : 'opacity-70'
-                            }`
-                          : ''
-                      }
-                    >
-                      {st}
-                    </li>
-                  ))}
-                </ol>
-              )}
+              <button type="button" className={btnGhost + ' w-full py-2.5'} onClick={() => setActive(s)}>
+                <Play className="w-4 h-4" /> Start timer
+              </button>
             </div>
-            <button type="button" className={btnGhost + ' w-full py-2.5'} onClick={() => setActive(s)}>
-              <Play className="w-4 h-4" /> Start timer
-            </button>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <StretchTimerModal stretch={active} onClose={() => setActive(null)} />
@@ -340,7 +344,7 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [repDone, setRepDone] = useState(0);
-  const [modalCycleStep, setModalCycleStep] = useState(() => getMalasanaStepFromCycle(Date.now()));
+  const [modalNowMs, setModalNowMs] = useState(() => Date.now());
 
   useEffect(() => {
     setSecondsLeft(stretch?.holdSeconds ?? 30);
@@ -350,9 +354,9 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
   }, [stretch]);
 
   useEffect(() => {
-    if (!stretch || stretch.id !== 'deep-squat') return;
+    if (!stretch) return;
     const id = setInterval(() => {
-      setModalCycleStep(getMalasanaStepFromCycle(Date.now()));
+      setModalNowMs(Date.now());
     }, 120);
     return () => clearInterval(id);
   }, [stretch]);
@@ -387,6 +391,9 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
       sets: s.sets ?? 1,
     });
   };
+
+  const idleCycleStep = getStretchActiveStep(stretch.id, modalNowMs);
+  const hasStepSync = idleCycleStep !== -1;
 
   return (
     <Modal open={!!stretch} onClose={onClose} title={stretch.name}>
@@ -423,15 +430,15 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
         {stretch.steps && stretch.steps.length > 0 && (
           <ol className="text-sm text-[#424753] dark:text-gray-300 space-y-1.5 list-decimal list-inside">
             {stretch.steps.map((st, i) => {
-              const isMalasana = stretch.id === 'deep-squat';
-              const currentStepIndex = isMalasana
+              const lastIdx = (stretch.steps?.length ?? 1) - 1;
+              const currentStepIndex = hasStepSync
                 ? !running
-                  ? modalCycleStep
+                  ? idleCycleStep
                   : secondsLeft > hold - 2
-                    ? 1
+                    ? Math.min(1, lastIdx)
                     : secondsLeft > hold - 5
-                      ? 2
-                      : 3
+                      ? Math.min(2, lastIdx)
+                      : lastIdx
                 : -1;
               const isHighlight = currentStepIndex === i;
 
@@ -441,7 +448,7 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
                   className={`transition-all duration-300 rounded-lg px-2.5 py-1.5 ${
                     isHighlight
                       ? 'bg-[#0051ae]/10 text-[#0051ae] dark:bg-[#0051ae]/30 dark:text-blue-300 font-bold border border-[#0051ae]/30 shadow-xs scale-[1.01]'
-                      : isMalasana
+                      : hasStepSync
                         ? 'opacity-70'
                         : ''
                   }`}

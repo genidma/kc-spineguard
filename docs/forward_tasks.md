@@ -11,8 +11,9 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 13:18 EST / 18:18 UTC                       │  ║
-+ ║  │ 🎯 PRIMARY TARGET: #7 — Cognition Tracker & Trends Redesign          │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 13:30 EST / 18:30 UTC                       │  ║
++ ║  │ 🎯 BREAK CHECKPOINT: Review #6 & #8 (Motion -> 90° Camera Tilt/Zoom) │  ║
++ ║  │ 🎯 NEXT TARGET: #7 — Cognition Tracker & Trends Redesign             │  ║
 + ║  │    Branch Context: main                                              │  ║
 + ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
@@ -30,7 +31,10 @@
 ```
 
 > [!IMPORTANT]
-> **End-of-Session Release Guardrail:** The `v1.1.0` release will be cut at the conclusion of today's working session when the agent receives explicit user approval (or provides a wrapping reminder).
+> **Post-Break Review Reminder:**
+> 1. Review **Malasana (`deep-squat`)** & **Seated Spinal Twist (`seated-twist`)**: Full step-by-step physical motion completes first while facing observer ($0^\circ$), synced with step highlights, followed by the slow calculus-curve $0^\circ \to -12^\circ \to 90^\circ$ horizontal camera orbit, elevation tilt, and stretch-zone zoom.
+> 2. Review **Knee-to-Chest (`knee-to-chest`)**: Articulated ball-and-socket hip joint bringing the knee past $138^\circ$ closely to the chest.
+> 3. **End-of-Session Release Guardrail:** The `v1.1.0` release will be cut at the conclusion of today's working session when the agent receives explicit user approval (or provides a wrapping reminder).
 
 ---
 
@@ -38,20 +42,19 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
+| 🔍 | **#6 & #8 (Review)** | Review sequential motion $\to$ slow 90° camera orbit/tilt & deep hip flexion | 🟢 Ready for Review | `src/components/StretchVisual.tsx`, Library |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
 | 🥉 | **#9 (High / New)** | 3D anatomical body map with pinpoint pain & clinical agent supervision | 💡 Queued | Profile 3D Body Map, Multi-Agent Engine |
 | 4️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
 | 5️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
-| 6️⃣ | **#6 (Completed)** | Add deep flat-foot squat (Malasana / Asian squat) to stretch library | 🟢 Closed Candidate | `src/lib/stretches.ts`, Library & Log |
-| 7️⃣ | **#8 (Completed)** | Realistic anatomical SVG & 60fps joint kinematics for all 10 stretches | 🟢 Closed Candidate | `src/components/StretchVisual.tsx`, Library |
-| 8️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
+| 6️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 
 ---
 
 ### 🏆 Recently Completed Milestones
 
-- [x] **v1.1.0-Cycle: Issue #8 (Realistic Anatomical Stretch Animations)**: Upgraded all 10 stretches to contoured anatomical figures with 60fps multi-joint kinematics, Matrix 360° orbital spin, and synchronized step highlights (`8b2a042`, Argon High & `gemini-3.8-flash-low`) ✅
+- [x] **v1.1.0-Cycle: Issue #8 & #6 (Sequential Motion $\to$ Slow 90° Calculus Camera Orbit/Tilt & Deep Hip Joint)**: Full step-synced motion followed by slow $0^\circ \to -12^\circ \to 90^\circ$ camera orbit/tilt & stretch-zone zoom for Malasana and Seated Spinal Twist, plus $>138^\circ$ ball-and-socket hip flexion for Knee-to-Chest (`Argon High` & `gemini-3.8-flash-low`) ✅
 - [x] **v1.1.0-Cycle: Issue #6 (Deep Flat-Foot Squat / Malasana)**: Added clinical Malasana stretch with 30s hold and step-by-step form guidance (`75eebe5`) ✅
 - [x] **v1.1.0-Cycle: Issue #5 (Mood & Cognition Intraday Points & Emojis)**: Numerical 1–5 labels under emojis in modal and exact matching emojis on Trends Y-axis (`7377bd8`, `278ca6f`) ✅
 - [x] **v1.1.0-Cycle: Dependabot Vulnerability Zero**: Resolved 28 dependencies to 0 vulnerabilities (`fa86bfb`) ✅

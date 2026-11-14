@@ -116,6 +116,7 @@ function anatomicalLimbPath(
 }
 
 export const MALASANA_CYCLE_MS = 16000;
+export const SEATED_TWIST_CYCLE_MS = 16000;
 
 export function getMalasanaStepFromCycle(cycleMs: number): number {
   const t = ((cycleMs % MALASANA_CYCLE_MS) + MALASANA_CYCLE_MS) % MALASANA_CYCLE_MS;
@@ -123,6 +124,19 @@ export function getMalasanaStepFromCycle(cycleMs: number): number {
   if (t < 5500) return 1; // Step 2: Lower hips into deep squat, heels flat
   if (t < 8500) return 2; // Step 3: Palms together at heart center, elbows press inner knees
   return 3; // Step 4: Spine elongated, breathe & hold + slow 0°->90° camera orbit & stretch focus
+}
+
+export function getStretchActiveStep(stretchId: string, cycleMs: number): number {
+  if (stretchId === 'deep-squat') {
+    return getMalasanaStepFromCycle(cycleMs);
+  }
+  if (stretchId === 'seated-twist') {
+    const t = ((cycleMs % SEATED_TWIST_CYCLE_MS) + SEATED_TWIST_CYCLE_MS) % SEATED_TWIST_CYCLE_MS;
+    if (t < 3200) return 0; // Step 1: Sit with legs extended, bend one knee & cross foot outside opposite knee
+    if (t < 6800) return 1; // Step 2: Place opposite elbow outside bent knee and gently rotate toward it
+    return 2; // Step 3: Keep spine tall, hold + slow 0°->90° camera orbit & stretch focus
+  }
+  return -1;
 }
 
 export function StretchVisual({
@@ -409,17 +423,37 @@ export function StretchVisual({
   }
 
   // ==========================================================================
-  // 2. SEATED SPINAL TWIST — Slow calculus-curve camera orbit (0° -> -12° -> 90°)
-  //    with focus zoom on the rotating thoracolumbar spine & piriformis/hip stretch
+  // 2. SEATED SPINAL TWIST — Sequential motion (Step 1: bend & cross leg ->
+  //    Step 2: hook elbow & rotate torso -> Step 3: hold + slow 0°->90° camera orbit & tilt)
   // ==========================================================================
   if (stretchId === 'seated-twist') {
-    const cycle14s = ((nowMs % 14000) + 14000) % 14000;
-    const twistPhase = cycle14s < 3000 ? easeInOut(cycle14s / 3000) : cycle14s < 12500 ? 1 : 1 - easeInOut((cycle14s - 12500) / 1500);
+    const t = ((nowMs % SEATED_TWIST_CYCLE_MS) + SEATED_TWIST_CYCLE_MS) % SEATED_TWIST_CYCLE_MS;
 
+    // Step 1 (0..3200ms): Bend knee & cross foot outside opposite knee
+    const legCrossPhase =
+      t < 700
+        ? 0
+        : t < 3000
+          ? easeInOut((t - 700) / 2300)
+          : t < 14800
+            ? 1
+            : 1 - easeInOut((t - 14800) / 1200);
+
+    // Step 2 (3200..6800ms): Place opposite elbow outside bent knee & rotate torso
+    const twistPhase =
+      t < 3200
+        ? 0
+        : t < 6400
+          ? easeInOut((t - 3200) / 3200)
+          : t < 14800
+            ? 1
+            : 1 - easeInOut((t - 14800) / 1200);
+
+    // Step 3 (6800..14800ms): Hold tall spine while camera performs slow calculus orbit (0° -> -12° -> 90°) + tilt
     let cameraAngleDeg = 0;
     let focusZoom = 0;
-    if (cycle14s >= 3500 && cycle14s < 12500) {
-      const orbit = calculusCameraOrbit((cycle14s - 3500) / 9000);
+    if (t >= 6800 && t < 14800) {
+      const orbit = calculusCameraOrbit((t - 6800) / 8000);
       cameraAngleDeg = orbit.angleDeg;
       focusZoom = orbit.focusZoom;
     }
@@ -430,16 +464,31 @@ export function StretchVisual({
     const shoulderC = project3D(58, 49, -2, cameraAngleDeg);
     const headC = project3D(58, 36, -1, cameraAngleDeg);
 
-    // Extended right leg & crossed left leg
+    // Extended right leg & crossing left leg (animates from extended to crossed in Step 1)
     const extFoot = project3D(46, 98, 28, cameraAngleDeg);
-    const crossKnee = project3D(56, 69, 10, cameraAngleDeg);
-    const crossFoot = project3D(45, 96, 8, cameraAngleDeg);
+    const crossKnee = project3D(
+      lerp(66, 56, legCrossPhase),
+      lerp(94, 69, legCrossPhase),
+      lerp(18, 10, legCrossPhase),
+      cameraAngleDeg
+    );
+    const crossFoot = project3D(
+      lerp(68, 44, legCrossPhase),
+      lerp(98, 96, legCrossPhase),
+      lerp(28, 8, legCrossPhase),
+      cameraAngleDeg
+    );
 
-    // Twisting shoulders & arms
+    // Twisting shoulders & arms (animates in Step 2)
     const shR = project3D(46, 50, -twistPhase * 9, cameraAngleDeg);
     const shL = project3D(70, 50, twistPhase * 9, cameraAngleDeg);
-    const backHand = project3D(58, 95, -16, cameraAngleDeg);
-    const hookElbow = project3D(53, 68, 12, cameraAngleDeg);
+    const backHand = project3D(lerp(42, 58, twistPhase), 95, lerp(4, -16, twistPhase), cameraAngleDeg);
+    const hookElbow = project3D(
+      lerp(74, 53, twistPhase),
+      lerp(72, 68, twistPhase),
+      lerp(4, 12, twistPhase),
+      cameraAngleDeg
+    );
 
     const zoomScale = 1 + focusZoom * 0.25;
 
