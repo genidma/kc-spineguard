@@ -11,20 +11,20 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 12:18 EST / 17:18 UTC                       │  ║
-+ ║  │ 🎯 PRIMARY TARGET: #5 — Investigate Mood & Cognition Entry Overwrites │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 12:20 EST / 17:20 UTC                       │  ║
++ ║  │ 🎯 PRIMARY TARGET: #6 — Add Deep Flat-Foot Squat (Malasana) Stretch  │  ║
 + ║  │    Branch Context: main                                              │  ║
 + ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
 + ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 1: #2 — Weight & Ratio Target │  ║
++ ║  │ 🎯 NEXT PRIORITY 1: #5 — Mood & Cog Entries   │  ║
 + ║  └───────────────────────────────────────────────┘  ║
 + ╚═════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 2: #3 — MFA Hardening (Med)  │  ║
++ ║  │ 🎯 NEXT PRIORITY 2: #2 — Weight & Ratio Target │  ║
 + ║  └───────────────────────────────────────────────┘  ║
 + ╚═════════════════════════════════════════════════╝
 ```
@@ -33,10 +33,11 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| 🥇 | **#5 (Highest)** | Investigate mood & cognition multiple entries per day behavior | 🟢 Ready | LogEditor, TodayView, TrendsView |
-| 🥈 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
-| 🥉 | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
-| 4️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
+| 🥇 | **#6 (Highest)** | Add deep flat-foot squat (Malasana / Asian squat) to stretch library | 🟢 Ready | `src/lib/stretches.ts`, Library & Log |
+| 🥈 | **#5 (High)** | Investigate mood & cognition multiple entries per day behavior | 🟡 Backlog | LogEditor, TodayView, TrendsView |
+| 🥉 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
+| 4️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
+| 5️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 
 ---
 
@@ -51,16 +52,25 @@
 
 ## 📋 Task Matrix
 
-### 1. #5 — Investigate Mood & Cognition Entry Overwrites
-- **In-Issue Search String ➡️ :** `'[MOOD-COG-INVESTIGATION]'`
+### 1. #6 — Add Deep Flat-Foot Squat (Malasana) Stretch
+- **In-Issue Search String ➡️ :** `'[DEEP-SQUAT-STRETCH]'`
 - **Assignee:** `@genidma` (Lead) / `AGY` (Antigravity)
 - **Status:** 🟢 Ready for implementation
+- **Key Deliverables:**
+  - Add "Deep squat (Malasana / flat-foot squat)" to `BUILT_IN_STRETCHES` in `src/lib/stretches.ts`
+  - Include hold timer and step-by-step lumbar decompress instructions
+  - Ensure it appears in stretch logging dropdown and Library
+
+### 2. #5 — Investigate Mood & Cognition Entry Overwrites
+- **In-Issue Search String ➡️ :** `'[MOOD-COG-INVESTIGATION]'`
+- **Assignee:** `@genidma` (Lead) / `AGY` (Antigravity)
+- **Status:** 🟡 Backlog
 - **Key Deliverables:**
   - Audit TodayView summary card vs timeline vs Trends chart
   - Ensure frequent mood/cognition updates retain individual historical timestamps
   - Verify intraday charts and timeline representation
 
-### 2. #2 — Track Weight Against Height & Gender Ratio
+### 3. #2 — Track Weight Against Height & Gender Ratio
 - **In-Issue Search String ➡️ :** `'[TRACK-WEIGHT-RATIO]'`
 - **Assignee:** `@genidma` (Lead) / `AGY` (Antigravity)
 - **Status:** 🟡 Backlog
@@ -71,7 +81,7 @@
   - Visual target band on the Weight Trends chart
   - Distance-to-target indicator on the Weight quick-log modal
 
-### 3. #3 — Multi-Factor Authentication (MFA) Hardening
+### 4. #3 — Multi-Factor Authentication (MFA) Hardening
 - **In-Issue Search String ➡️ :** `'[MFA-HARDENING]'`
 - **Assignee:** `@genidma` (Lead) / `AGY` (Antigravity)
 - **Status:** 🟡 Backlog (Medium Priority)
@@ -80,7 +90,7 @@
   - Evaluate Firebase Identity Platform native MFA options
   - Refine recovery code redemption flow
 
-### 4. #1 — IP Security Log Cloud Function Deployment
+### 5. #1 — IP Security Log Cloud Function Deployment
 - **In-Issue Search String ➡️ :** `'[IP-SECURITY-LOG]'`
 - **Assignee:** `@genidma` (Lead)
 - **Status:** ⏸️ On Hold (Waiting for Firebase Blaze plan upgrade)
