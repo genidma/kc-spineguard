@@ -396,11 +396,12 @@ function LogForm({ type, existing, onClose, prefill }: LogEditorProps) {
                   aria-label={`Mood ${i + 1}`}
                   aria-pressed={data.score === i + 1}
                   onClick={() => set({ score: i + 1 })}
-                  className={`flex-1 text-3xl py-3 rounded-2xl transition-all ${
+                  className={`flex-1 flex flex-col items-center py-2.5 rounded-2xl transition-all ${
                     data.score === i + 1 ? 'bg-amber-100 dark:bg-amber-900/40 scale-105 ring-2 ring-amber-400' : 'bg-[#f0f4fc] dark:bg-gray-700'
                   }`}
                 >
-                  {f}
+                  <span className="text-2xl sm:text-3xl">{f}</span>
+                  <span className="text-[10px] font-black uppercase text-[#88909f] mt-1">{i + 1}</span>
                 </button>
               ))}
             </div>

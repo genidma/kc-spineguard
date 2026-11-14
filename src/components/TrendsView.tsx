@@ -310,7 +310,16 @@ export function TrendsView() {
                   <LineChart data={moodCogTimeline}>
                     <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
                     <XAxis dataKey="label" tick={{ fontSize: 11 }} />
-                    <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 11 }} />
+                    <YAxis
+                      domain={[1, 5]}
+                      ticks={[1, 2, 3, 4, 5]}
+                      tick={{ fontSize: 12 }}
+                      tickFormatter={(val: number) => {
+                        const faces = ['😞', '🙁', '😐', '🙂', '😄'];
+                        return faces[val - 1] ? `${faces[val - 1]} ${val}` : String(val);
+                      }}
+                      width={38}
+                    />
                     <Tooltip />
                     <Legend />
                     <Line type="monotone" dataKey="mood" name="Mood" stroke="#d97706" strokeWidth={2} connectNulls dot={{ r: 4, fill: '#d97706' }} />
