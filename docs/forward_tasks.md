@@ -30,7 +30,7 @@
 ```
 
 > [!IMPORTANT]
-> **End-of-Session Release Guardrail:** The `v1.1.0` release will be cut at the conclusion of today's working session when the agent receives explicit user approval (or provides a wrapping reminder).
+> **v1.1.0 Released:** The `v1.1.0` release has been successfully tagged, documented with woven screenshots, and published on GitHub at [v1.1.0 Release](https://github.com/genidma/kc-spineguard/releases/tag/v1.1.0).
 
 ---
 
