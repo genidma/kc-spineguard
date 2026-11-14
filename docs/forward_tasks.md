@@ -11,20 +11,20 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 12:44 EST / 17:44 UTC                       │  ║
-+ ║  │ 🎯 PRIMARY TARGET: #6 — Add Deep Flat-Foot Squat (Malasana) Stretch  │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 12:47 EST / 17:47 UTC                       │  ║
++ ║  │ 🎯 PRIMARY TARGET: #7 — Cognition Tracker & Trends Redesign          │  ║
 + ║  │    Branch Context: main                                              │  ║
 + ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
 + ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 1: #7 — Cognition Redesign   │  ║
++ ║  │ 🎯 NEXT PRIORITY 1: #2 — Height-Weight Ratio  │  ║
 + ║  └───────────────────────────────────────────────┘  ║
 + ╚═════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 2: #8 — Stretch Animations   │  ║
++ ║  │ 🎯 NEXT PRIORITY 2: #3 — MFA Hardening        │  ║
 + ║  └───────────────────────────────────────────────┘  ║
 + ╚═════════════════════════════════════════════════╝
 ```
@@ -38,12 +38,12 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| 🥇 | **#6 (Highest)** | Add deep flat-foot squat (Malasana / Asian squat) to stretch library | 🟢 Ready | `src/lib/stretches.ts`, Library & Log |
-| 🥈 | **#7 (High)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟡 Backlog | LogEditor, TrendsView (relates to #5) |
-| 🥉 | **#8 (Medium)** | Animated SVG & CSS clinical illustrations for stretch library | 🟡 Backlog | `docs/stretch_animations_design.md` |
-| 4️⃣ | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
-| 5️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
-| 6️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
+| 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
+| 🥈 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
+| 🥉 | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
+| 4️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
+| 5️⃣ | **#6 (Completed)** | Add deep flat-foot squat (Malasana / Asian squat) to stretch library | 🟢 Closed Candidate | `src/lib/stretches.ts`, Library & Log |
+| 6️⃣ | **#8 (Completed)** | Animated SVG & CSS clinical illustrations for stretch library | 🟢 Closed Candidate | `src/components/StretchVisual.tsx`, Library |
 | 7️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 
 ---
