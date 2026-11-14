@@ -53,7 +53,7 @@
 | 6️⃣ | **#10 (Completed)** | Trends: Stretch (adaptive time grouping + Daily Stretches breakdown) | 🟢 Closed Candidate | TrendsView (`src/components/TrendsView.tsx`) |
 | 7️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
 | 8️⃣ | **#6 & #8 (Review)** | Review sequential motion $\to$ slow 90° camera orbit/tilt & deep hip flexion | 🟢 Ready for Review | `src/components/StretchVisual.tsx`, Library |
-| 9️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
+| 9️⃣ | **#1 (Linked to #14)** | IP Security Log Cloud Function & Blaze deployment (Enables #14) | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 | 🏆 | **#12 (Completed)** | Open Source Preparation: Public visibility switch, MIT License & audit sign-off | ✅ **COMPLETED WIN (2026-11-14 16:52 EST / 21:52 UTC)** | GitHub repo public |
 
 ---
