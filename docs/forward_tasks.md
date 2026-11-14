@@ -11,8 +11,8 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 16:28 EST / 21:28 UTC                       │  ║
-+ ║  │ 📌👉 🎯 PRIMARY TARGET: #12 — Open Source Prep (MIT License & Audit) │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 16:34 EST / 21:34 UTC                       │  ║
++ ║  │ 🔴👉 🎯 PRIMARY TARGET: #12 — Open Source Prep (MIT License & Audit) │  ║
 + ║  │    Status: ✅ Argon Approved — Ready for Public Visibility Switch    │  ║
 + ║  │    Branch Context: main                                              │  ║
 + ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
@@ -20,12 +20,12 @@
 + ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 1: #7 — Cognition Redesign   │  ║
++ ║  │ 🎯 NEXT PRIORITY 1: #14 — IP Log & MFA (Rhythm)│ ║
 + ║  └───────────────────────────────────────────────┘  ║
 + ╚═════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════╗
 + ║  ┌───────────────────────────────────────────────┐  ║
-+ ║  │ 🎯 NEXT PRIORITY 2: #9 — 3D Body Map & Agents │  ║
++ ║  │ 🎯 NEXT PRIORITY 2: #7 — Cognition Redesign   │  ║
 + ║  └───────────────────────────────────────────────┘  ║
 + ╚═════════════════════════════════════════════════╝
 ```
@@ -39,7 +39,8 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| 📌👉 🚀 | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | ✅ Argon Approved (Ready for Public Switch) | `LICENSE`, `firestore.rules`, public launch |
+| 🔴👉 🚀 | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | ✅ Argon Approved (Ready for Public Switch) | `LICENSE`, `firestore.rules`, public launch |
+| 🛡️ | **#14 (Queued)** | Enable IP security log & MFA enforcement borrowing KC Rhythm architecture | 💡 Queued (Child of #12) | `functions/index.js`, `SecurityLogView.tsx` |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
 | 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
 | 🥉 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
