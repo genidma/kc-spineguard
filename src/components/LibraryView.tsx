@@ -6,6 +6,7 @@ import { deleteCustomStretch, deleteMedication, saveCustomStretch, saveMedicatio
 import { chime } from '../lib/reminders';
 import { MED_KINDS, type Medication, type Stretch } from '../lib/types';
 import { Chips, Empty, Field, Modal, PageHeader, TextInput, btnGhost, btnPrimary, card, inputCls } from './ui';
+import { StretchVisual } from './StretchVisual';
 
 export function LibraryView() {
   const [tab, setTab] = useState<'meds' | 'stretches'>('meds');
@@ -271,6 +272,11 @@ function StretchesTab() {
                   </button>
                 )}
               </div>
+              <div className="my-2 p-2 bg-[#f0f4fc] dark:bg-gray-700/50 rounded-2xl flex items-center justify-center">
+                <div className="w-28 h-28">
+                  <StretchVisual stretchId={s.id} />
+                </div>
+              </div>
               {s.target && <p className="text-xs font-bold text-emerald-700 dark:text-emerald-400 mt-1">{s.target}</p>}
               <p className="text-xs text-[#424753] dark:text-gray-400 mt-1">
                 {[s.sets ? `${s.sets} sets` : null, s.reps ? `${s.reps} reps` : null, s.holdSeconds ? `${s.holdSeconds}s hold` : null]
@@ -354,7 +360,10 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
   return (
     <Modal open={!!stretch} onClose={onClose} title={stretch.name}>
       <div className="space-y-5">
-        <div className="text-center py-4 bg-[#f0f4fc] dark:bg-gray-700 rounded-2xl">
+        <div className="flex flex-col items-center justify-center p-4 bg-[#f0f4fc] dark:bg-gray-700 rounded-2xl">
+          <div className="w-36 h-36 mb-2">
+            <StretchVisual stretchId={stretch.id} active={running} />
+          </div>
           <div className="text-5xl font-black tabular-nums text-[#0051ae] dark:text-white">{secondsLeft}s</div>
           <div className="text-xs font-bold uppercase tracking-wider text-[#424753] dark:text-gray-300 mt-1">
             Completed holds: {repDone}
