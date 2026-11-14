@@ -40,13 +40,14 @@
 | :---: | :--- | :--- | :--- | :--- |
 | 🚀 | **#12 (Active)** | Open source preparation: MIT license & monetization strategy | 🟢 In Progress | `LICENSE`, `package.json`, public launch |
 | 🥇 | **#7 (Highest)** | Redesign cognition tracker & trends (memory metric & brain fog scale) | 🟢 Ready | LogEditor, TrendsView (relates to #5) |
-| 🥈 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
-| 🥉 | **#9 (High)** | 3D anatomical body map with pinpoint pain & clinical agent supervision | 💡 Queued | Profile 3D Body Map, Multi-Agent Engine |
-| 4️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
-| 5️⃣ | **#10 (Completed)** | Trends: Stretch (adaptive time grouping + Daily Stretches breakdown) | 🟢 Closed Candidate | TrendsView (`src/components/TrendsView.tsx`) |
-| 6️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
-| 7️⃣ | **#6 & #8 (Review)** | Review sequential motion $\to$ slow 90° camera orbit/tilt & deep hip flexion | 🟢 Ready for Review | `src/components/StretchVisual.tsx`, Library |
-| 8️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
+| 🥈 | **#13 (Queued)** | Add exercise ball as an ergonomic aid under Log Posture | 💡 Queued | `src/lib/logMeta.ts`, `LogEditor.tsx` |
+| 🥉 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
+| 4️⃣ | **#9 (High)** | 3D anatomical body map with pinpoint pain & clinical agent supervision | 💡 Queued | Profile 3D Body Map, Multi-Agent Engine |
+| 5️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
+| 6️⃣ | **#10 (Completed)** | Trends: Stretch (adaptive time grouping + Daily Stretches breakdown) | 🟢 Closed Candidate | TrendsView (`src/components/TrendsView.tsx`) |
+| 7️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
+| 8️⃣ | **#6 & #8 (Review)** | Review sequential motion $\to$ slow 90° camera orbit/tilt & deep hip flexion | 🟢 Ready for Review | `src/components/StretchVisual.tsx`, Library |
+| 9️⃣ | **#1 (Low / Nice-to-have)** | IP Security Log Cloud Function & Blaze deployment | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 
 ---
 
