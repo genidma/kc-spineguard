@@ -60,6 +60,7 @@
 
 ### 🏆 Recently Completed Milestones
 
+- [x] **Dotfiles Workflow Tiering (Direct vs. PR Flow)**: Updated `git-branching-workflow` in `dotfiles` (`11b1cd1`) defining Tier 1 (Direct to `main-dev` for rapid fixes) and Tier 2 (Topic Branch & PR for large features/CI isolation).
 - [x] **Ergonomic Posture Aids: Exercise Ball (Issue #13)**: Added stability / exercise ball option to `POSTURE_AIDS` in `src/lib/logMeta.ts`, verified modal chip rendering and build, merged via PR #17 into `main-dev` and fast-forwarded to `main` at **November 14, 2026 — 6:53 PM EST / 23:53 UTC** (`3adf624`).
 - [x] **Repository-Wide Checklist Item Count Ledgers**: Executed comprehensive item audit across all 12 open issues (#1–#16), publishing signed Open vs. Closed Snapshots and open-item balance sheets across all containers at **November 14, 2026 — 6:50 PM EST / 23:50 UTC** (`task-255`).
 - [x] **Dual-Branch Staging Workflow (Issue #15)**: Created and published `main-dev` branch to origin, updated repository contributing guidelines in README to direct all PRs and development to `main-dev` first prior to `main` release promotion at **November 14, 2026 — 5:43 PM EST / 22:43 UTC** (`5d3828f`).
