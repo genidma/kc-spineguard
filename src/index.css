@@ -55,12 +55,53 @@ input[type="range"].pain-range::-moz-range-thumb {
     opacity: 0.95;
   }
   50% {
-    transform: scale(1.02) translateY(-1.5px);
+    transform: scale(1.03) translateY(-2px);
     opacity: 1;
   }
 }
 
-.stretch-active-anim {
-  animation: stretch-decompress 4s ease-in-out infinite;
+/* Gentle ambient breathing cycle for idle cards */
+@keyframes stretch-ambient-breathe {
+  0%, 100% {
+    transform: scale(0.985);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.015);
+    opacity: 1;
+  }
+}
+
+/* Matrix-style 360 horizontal 3D rotation */
+@keyframes matrix-spin-360 {
+  0% {
+    transform: perspective(600px) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(600px) rotateY(180deg) scale(1.04);
+  }
+  100% {
+    transform: perspective(600px) rotateY(360deg);
+  }
+}
+
+.stretch-container-3d {
+  perspective: 700px;
+  transform-style: preserve-3d;
+}
+
+.stretch-ambient-anim {
+  animation: stretch-ambient-breathe 4.5s ease-in-out infinite;
   transform-origin: center bottom;
 }
+
+.stretch-active-anim {
+  animation: stretch-decompress 3s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.matrix-360-anim {
+  animation: matrix-spin-360 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  transform-origin: 50% 60%;
+}
+

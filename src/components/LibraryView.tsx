@@ -272,7 +272,7 @@ function StretchesTab() {
                   </button>
                 )}
               </div>
-              <div className="my-2 p-2 bg-[#f0f4fc] dark:bg-gray-700/50 rounded-2xl flex items-center justify-center">
+              <div className="my-2 p-2 bg-[#f0f4fc] dark:bg-gray-700/50 rounded-2xl flex items-center justify-center stretch-container-3d overflow-hidden">
                 <div className="w-28 h-28">
                   <StretchVisual stretchId={s.id} />
                 </div>
@@ -360,7 +360,7 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
   return (
     <Modal open={!!stretch} onClose={onClose} title={stretch.name}>
       <div className="space-y-5">
-        <div className="flex flex-col items-center justify-center p-4 bg-[#f0f4fc] dark:bg-gray-700 rounded-2xl">
+        <div className="flex flex-col items-center justify-center p-4 bg-[#f0f4fc] dark:bg-gray-700 rounded-2xl stretch-container-3d overflow-hidden">
           <div className="w-36 h-36 mb-2">
             <StretchVisual stretchId={stretch.id} active={running} />
           </div>

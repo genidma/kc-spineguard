@@ -4,7 +4,16 @@ import React from 'react';
 export function StretchVisual({ stretchId, active = false }: { stretchId: string; active?: boolean }) {
   const stroke = 'currentColor';
   const accent = '#0051ae';
-  const animClass = active ? 'stretch-active-anim' : '';
+  
+  // Stretches requested for matrix-style 360 horizontal rotation:
+  // 'deep-squat' (Malasana) and 'seated-twist' (Spinal twist)
+  const isMatrixSpin = stretchId === 'deep-squat' || stretchId === 'seated-twist';
+  
+  const animClass = isMatrixSpin
+    ? 'matrix-360-anim'
+    : active
+      ? 'stretch-active-anim'
+      : 'stretch-ambient-anim';
 
   switch (stretchId) {
     case 'deep-squat':
