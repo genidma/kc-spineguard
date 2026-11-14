@@ -12,10 +12,10 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 1,
     builtIn: true,
     steps: [
-      'Stand with feet shoulder-width apart, toes turned slightly outward.',
-      'Lower your hips into a deep squat, keeping both heels planted flat on the floor.',
+      'Stand tall with feet shoulder-width apart and toes turned slightly outward.',
+      'Slowly lower your hips into a deep squat, keeping both heels planted flat on the floor.',
       'Bring palms together at heart center, pressing elbows gently against inner knees to open hips.',
-      'Keep your spine elongated and chest lifted. Breathe deeply and hold. (Use a heel wedge or doorframe support if tight).',
+      'Hold with spine elongated and chest lifted, breathing deeply, then slowly release back to standing.',
     ],
   },
   {
@@ -27,10 +27,10 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 1,
     builtIn: true,
     steps: [
-      'Lie on your back with knees bent and feet flat.',
-      'Gently pull one knee toward your chest with both hands.',
-      'Keep the other foot on the floor and your lower back relaxed.',
-      'Hold, then switch sides.',
+      'Lie face-up on your back with knees bent and feet flat on the floor.',
+      'Slowly and gently draw one knee closely toward your chest using both hands.',
+      'Hold steadily with your lower back relaxed against the mat and breathe deeply.',
+      'Gently release the leg back to the starting position, then switch sides.',
     ],
   },
   {
@@ -42,10 +42,10 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 1,
     builtIn: true,
     steps: [
-      'Lie on your back, knees bent.',
-      'Cross the affected-side ankle over the opposite knee (figure-4).',
-      'Pull the lower thigh toward your chest until you feel a stretch in the buttock.',
-      'Hold, breathe slowly, then switch sides.',
+      'Lie face-up on your back with both knees bent and feet flat.',
+      'Cross the affected-side ankle over the opposite knee (figure-4) and gently draw the thigh toward your chest.',
+      'Hold the stretch steadily in the deep buttock/hip while breathing slowly.',
+      'Gently release your leg back down to the floor, then switch sides.',
     ],
   },
   {
@@ -57,10 +57,10 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 2,
     builtIn: true,
     steps: [
-      'Sit tall at the edge of a chair.',
-      'Slowly straighten the affected knee while tilting your head back.',
-      'Then bend the knee while bringing your chin toward your chest.',
-      'Move smoothly; this is a glide, not a hold. Stop if symptoms increase.',
+      'Sit tall at the edge of a chair with shoulders relaxed.',
+      'Slowly straighten the affected knee while tilting your head gently back, and pause briefly (2s).',
+      'Slowly bend the knee back down while nodding your chin toward your chest, and pause briefly (2s).',
+      'Release to neutral and repeat smoothly; keep the motion gentle without forcing into pain.',
     ],
   },
   {
@@ -72,9 +72,10 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 1,
     builtIn: true,
     steps: [
-      'Sit with legs extended. Bend one knee and place that foot outside the opposite knee.',
-      'Place the opposite elbow outside the bent knee and gently rotate toward it.',
-      'Keep your spine tall. Hold, then switch sides.',
+      'Sit tall on the mat with legs extended, then bend one knee and step that foot flat outside the opposite knee.',
+      'Place one hand on the floor behind your hip for support and hook the opposite elbow outside the raised knee.',
+      'Gently rotate your torso toward the bent knee while keeping your spine tall.',
+      'Hold the twist and breathe slowly, then gently unwind and release before switching sides.',
     ],
   },
   {
@@ -86,10 +87,10 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 1,
     builtIn: true,
     steps: [
-      'Start on hands and knees, wrists under shoulders, knees under hips.',
-      'Inhale: let your belly drop and lift your chest (cow).',
-      'Exhale: round your back toward the ceiling (cat).',
-      'Move slowly within a comfortable range.',
+      'Start on hands and knees in a neutral tabletop (wrists under shoulders, knees under hips).',
+      'Inhale into Cow: slowly let your belly dip and lift your chest, hold gently (3s), then release to neutral.',
+      'Exhale into Cat: slowly round your back toward the ceiling, hold gently (3s), then release to neutral.',
+      'Repeat slowly and rhythmically within a pain-free, comfortable range.',
     ],
   },
   {
@@ -101,9 +102,10 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 1,
     builtIn: true,
     steps: [
-      'Kneel and sit back toward your heels.',
-      'Walk your hands forward and rest your forehead down.',
-      'Breathe into your lower back and relax.',
+      'Kneel on the mat and sit your hips back toward your heels.',
+      'Slowly fold forward, walk your hands out in front of you, and rest your forehead down.',
+      'Hold deeply, breathing into your lower back to let lumbar tension release.',
+      'Gently walk your hands back to sit upright and release.',
     ],
   },
   {
@@ -115,9 +117,10 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 1,
     builtIn: true,
     steps: [
-      'Lie on your back. Loop a towel or strap around one foot.',
-      'Raise the leg with the knee slightly bent until you feel a gentle stretch.',
-      'Avoid pulling into nerve pain. Hold, then switch.',
+      'Lie face-up on your back and loop a towel or strap around one foot.',
+      'Slowly raise the leg with the knee softly bent until you feel a gentle hamstring stretch.',
+      'Hold steadily without pulling into nerve pain, breathing slowly.',
+      'Gently lower the leg back to the mat to release, then switch sides.',
     ],
   },
   {
@@ -129,23 +132,25 @@ export const BUILT_IN_STRETCHES: Stretch[] = [
     sets: 2,
     builtIn: true,
     steps: [
-      'Lie on your back with knees bent.',
-      'Tighten your belly and flatten your lower back into the floor.',
-      'Hold briefly, then relax.',
+      'Lie face-up on your back with knees bent and feet flat on the floor.',
+      'Gently tighten your core and tilt your pelvis to press your lower back flat into the mat.',
+      'Hold the flattened position steadily for 5 seconds while breathing normally.',
+      'Slowly release your pelvis back to a neutral curve and relax.',
     ],
   },
   {
     id: 'prone-press-up',
     name: 'Prone press-up (McKenzie)',
     target: 'Lumbar extension',
-    holdSeconds: 2,
+    holdSeconds: 3,
     reps: 10,
     sets: 1,
     builtIn: true,
     steps: [
-      'Lie face down, hands under your shoulders.',
-      'Press your upper body up while keeping hips on the floor.',
-      'Only go as high as comfortable; stop if leg pain spreads further down.',
+      'Lie face-down (prone) on the mat with palms planted flat under your shoulders and hips relaxed.',
+      'Slowly press your upper body up while keeping your pelvis and legs relaxed against the floor.',
+      'Hold gently at a comfortable height while letting your lower back relax (stop if leg pain spreads).',
+      'Slowly lower your chest and forehead back down to the mat to release.',
     ],
   },
 ];

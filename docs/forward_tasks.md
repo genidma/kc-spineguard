@@ -11,8 +11,8 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 13:30 EST / 18:30 UTC                       │  ║
-+ ║  │ 🎯 BREAK CHECKPOINT: Review #6 & #8 (Motion -> 90° Camera Tilt/Zoom) │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-14 13:40 EST / 18:40 UTC                       │  ║
++ ║  │ 🎯 BREAK CHECKPOINT: Review #6 & #8 (Stretch->Hold->Release + Prone) │  ║
 + ║  │ 🎯 NEXT TARGET: #7 — Cognition Tracker & Trends Redesign             │  ║
 + ║  │    Branch Context: main                                              │  ║
 + ║  │    Active Repo: https://github.com/genidma/kc-spineguard             │  ║
@@ -32,9 +32,10 @@
 
 > [!IMPORTANT]
 > **Post-Break Review Reminder:**
-> 1. Review **Malasana (`deep-squat`)** & **Seated Spinal Twist (`seated-twist`)**: Full step-by-step physical motion completes first while facing observer ($0^\circ$), synced with step highlights, followed by the slow calculus-curve $0^\circ \to -12^\circ \to 90^\circ$ horizontal camera orbit, elevation tilt, and stretch-zone zoom.
-> 2. Review **Knee-to-Chest (`knee-to-chest`)**: Articulated ball-and-socket hip joint bringing the knee past $138^\circ$ closely to the chest.
-> 3. **End-of-Session Release Guardrail:** The `v1.1.0` release will be cut at the conclusion of today's working session when the agent receives explicit user approval (or provides a wrapping reminder).
+> 1. **Malasana (`deep-squat`)**: Fixed pelvis/butt lateral shift (`hipZ = 0` centered on vertical axis) and eliminated camera double-take (pure one-way quintic $0^\circ \to 90^\circ$ camera orbit during Step 4 hold).
+> 2. **All 10 Stretches — Stretch Gently $\to$ Hold $\to$ Release + 4-Step Sync**: Weaved **Setup $\to$ Gentle Stretch $\to$ Sustained Hold $\to$ Gentle Release** into both animations and instructions across all 10 stretches (including Cat-Cow alternating holds, Nerve Glide 2s pauses, and redesigned 4-step Seated Spinal Twist).
+> 3. **Prone Press-Up (McKenzie)**: Added unmistakable face-down (prone) visual cues (downward nose/chin/gaze profile, bent elbows with flat palms under shoulders, anchored pelvis arrow, and prone feet with heels up / toes on mat).
+> 4. **End-of-Session Release Guardrail:** The `v1.1.0` release will be cut at the conclusion of today's working session when the agent receives explicit user approval (or provides a wrapping reminder).
 
 ---
 
