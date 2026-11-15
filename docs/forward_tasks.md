@@ -64,7 +64,7 @@
 - [x] **Ergonomic Posture Aids: Exercise Ball (Issue #13)**: Added stability / exercise ball option to `POSTURE_AIDS` in `src/lib/logMeta.ts`, verified modal chip rendering and build, merged via PR #17 into `main-dev` and fast-forwarded to `main` at **November 14, 2026 — 6:53 PM EST / 23:53 UTC** (`3adf624`).
 - [x] **Repository-Wide Checklist Item Count Ledgers**: Executed comprehensive item audit across all 12 open issues (#1–#16), publishing signed Open vs. Closed Snapshots and open-item balance sheets across all containers at **November 14, 2026 — 6:50 PM EST / 23:50 UTC** (`task-255`).
 - [x] **Dual-Branch Staging Workflow (Issue #15)**: Created and published `main-dev` branch to origin, updated repository contributing guidelines in README to direct all PRs and development to `main-dev` first prior to `main` release promotion at **November 14, 2026 — 5:43 PM EST / 22:43 UTC** (`5d3828f`).
-- [x] **Commit Signing & Verification**: Generated dedicated cloud SSH signing key (`kc-spineguard cloud signing key for agy cloud project`), persisted in `~/.gemini/git_keys/`, enabled local repository signing with verified badge (`1decf1b`) at **November 14, 2026 — 5:18 PM EST / 22:18 UTC**.
+- [x] **Commit Signing & Verification**: Configured SSH commit signing for verified GitHub badges (`1decf1b`) at **November 14, 2026 — 5:18 PM EST / 22:18 UTC**.
 - [x] **Personal Profile Showcase ([genidma/genidma#4](https://github.com/genidma/genidma/issues/4))**: Showcased `kc-spineguard` on `@genidma` personal GitHub profile README with Today recovery dashboard and Asian squat / Malasana kinematic timer screenshots (`fd095b6`) at **November 14, 2026 — 5:06 PM EST / 22:06 UTC**.
 - [x] **v1.1.0-Cycle: Issue #12 (Open Source Release & Public Visibility Switch)**: Transitioned repository visibility from Private to **PUBLIC** on GitHub with standard MIT License (2026, `genidma`), hardened `.gitignore`, and dual-agent security audit sign-off at **November 14, 2026 — 4:52 PM EST / 21:52 UTC** (`3b30365`) 🌐🎉🏆
 - [x] **v1.1.0 Production Release Cut**: Official release tagged with high-res Playwright screenshots, automated visual walkthrough, and full changelog ([v1.1.0](https://github.com/genidma/kc-spineguard/releases/tag/v1.1.0)) ✅
@@ -142,7 +142,3 @@
 - **Repository:** `genidma/kc-spineguard`
 - **Production URL:** [https://kc-spineguard.web.app](https://kc-spineguard.web.app)
 - **Active Release:** [v1.1.0](https://github.com/genidma/kc-spineguard/releases/tag/v1.1.0)
-- **Cloud Commit Signing Metadata:**
-  - **GitHub Key Title:** `kc-spineguard cloud signing key for agy cloud project`
-  - **Key Type:** `Signing Key` (Ed25519)
-  - **Persistence Location:** `~/.gemini/git_keys/id_ed25519_kc_signing` (Persisted across sessions; never tracked in public git repo)
