@@ -52,7 +52,7 @@
 | 5️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
 | 6️⃣ | **#10 (Completed)** | Trends: Stretch (adaptive time grouping + Daily Stretches breakdown) | 🟢 Closed Candidate | TrendsView (`src/components/TrendsView.tsx`) |
 | 7️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
-| 8️⃣ | **#6 & #8 (Review)** | Review sequential motion $\to$ slow 90° camera orbit/tilt & deep hip flexion | 🟢 Ready for Review | `src/components/StretchVisual.tsx`, Library |
+| 8️⃣ | **#6 (Completed) & #8 (Review)** | Deep flat-foot squat & auto-log completed; sequential 90° motion review | ✅ **#6 CLOSED** / 🟢 **#8 Ready** | `src/components/StretchVisual.tsx`, Library |
 | 9️⃣ | **#1 (Linked to #14)** | IP Security Log Cloud Function & Blaze deployment (Enables #14) | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 | 🏆 | **#12 (Completed)** | Open Source Preparation: Public visibility switch, MIT License & audit sign-off | ✅ **COMPLETED WIN (2026-11-14 16:52 EST / 21:52 UTC)** | GitHub repo public |
 
