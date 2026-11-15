@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Pill, Plus, Play, Pause, RotateCcw, Check, Trash2, StretchHorizontal, Archive, Pencil } from 'lucide-react';
 import { useAppData } from '../hooks/useAppData';
 import { useOpenLog } from '../hooks/useLogEditor';
-import { deleteCustomStretch, deleteMedication, saveCustomStretch, saveMedication } from '../lib/db';
+import { deleteCustomStretch, deleteMedication, saveCustomStretch, saveMedication, saveLog } from '../lib/db';
 import { chime } from '../lib/reminders';
 import { MED_KINDS, type Medication, type Stretch } from '../lib/types';
 import { Chips, Empty, Field, Modal, PageHeader, TextInput, btnGhost, btnPrimary, card, inputCls } from './ui';
@@ -338,6 +338,7 @@ function StretchesTab() {
 }
 
 function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onClose: () => void }) {
+  const { uid } = useAppData();
   const openLog = useOpenLog();
   const hold = stretch?.holdSeconds ?? 30;
   const [secondsLeft, setSecondsLeft] = useState(hold);
@@ -345,12 +346,14 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
   const [elapsed, setElapsed] = useState(0);
   const [repDone, setRepDone] = useState(0);
   const [modalNowMs, setModalNowMs] = useState(() => Date.now());
+  const [autoLogSuccess, setAutoLogSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     setSecondsLeft(stretch?.holdSeconds ?? 30);
     setRunning(false);
     setElapsed(0);
     setRepDone(0);
+    setAutoLogSuccess(null);
   }, [stretch]);
 
   useEffect(() => {
@@ -368,15 +371,36 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
       setSecondsLeft((s) => {
         if (s <= 1) {
           chime();
-          setRepDone((r) => r + 1);
+          const nextRep = repDone + 1;
+          setRepDone(nextRep);
           setRunning(false);
+
+          // Direct Auto-Log to History & Trends on completion
+          if (uid) {
+            const durationSec = Math.max(elapsed + 1, nextRep * hold, hold);
+            void saveLog(uid, {
+              type: 'stretch',
+              at: new Date().toISOString(),
+              data: {
+                stretchId: stretch.id,
+                stretchName: stretch.name,
+                durationSec,
+                reps: nextRep,
+                sets: stretch.sets ?? 1,
+              },
+            }).then(() => {
+              setAutoLogSuccess(`Hold ${nextRep} logged to History & Trends!`);
+              setTimeout(() => setAutoLogSuccess(null), 3500);
+            });
+          }
+
           return hold;
         }
         return s - 1;
       });
     }, 1000);
     return () => clearInterval(id);
-  }, [running, stretch, hold]);
+  }, [running, stretch, hold, repDone, elapsed, uid]);
 
   if (!stretch) return null;
 
@@ -407,6 +431,11 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
             Completed holds: {repDone}
             {stretch.reps ? ` / ${stretch.reps}` : ''}
           </div>
+          {autoLogSuccess && (
+            <div className="mt-2 text-xs font-bold px-3 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 rounded-full animate-fade-in flex items-center gap-1.5 shadow-xs">
+              <Check className="w-3.5 h-3.5" /> {autoLogSuccess}
+            </div>
+          )}
         </div>
 
         <div className="flex gap-2">
@@ -461,7 +490,7 @@ function StretchTimerModal({ stretch, onClose }: { stretch: Stretch | null; onCl
         )}
 
         <button type="button" className={btnPrimary + ' w-full'} onClick={finishAndLog}>
-          <Check className="w-4 h-4" /> Finish &amp; log stretch
+          <Check className="w-4 h-4" /> Review &amp; add notes
         </button>
       </div>
     </Modal>
