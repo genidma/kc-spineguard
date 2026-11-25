@@ -11,12 +11,12 @@
 ```diff
 + ╔════════════════════════════════════════════════════════════════════════════╗
 + ║  ┌──────────────────────────────────────────────────────────────────────┐  ║
-+ ║  │ ⏰ TIMESTAMP: 2026-11-14 18:55 EST / 23:55 UTC                        │  ║
-! ║  │ 🎯 PRIMARY TARGET: #14 — IP Log & MFA Enforcement                     │  ║
-- ║  │ 🔍 IMMEDIATE STEP: Verify IP log on live (Cue: 2026-11-14 18:36)      │  ║
-+ ║  │ 🔍 SECONDARY STEP: Add MFA QR code setup (KC Rhythm architecture)     │  ║
-+ ║  │ Branch Context: main / main-dev                                      │  ║
-+ ║  │ Target: functions/index.js (Blaze), ProfileView.tsx (QR code)        │  ║
++ ║  │ ⏰ TIMESTAMP: 2026-11-25 18:06 EST / 23:06 UTC                        │  ║
+! ║  │ 🎯 PRIMARY TARGET: #14 — IP Log Deployment & MFA QR Code Parity        │  ║
++ ║  │ 🔍 IMMEDIATE UI STEP: Add MFA QR Code generator (ProfileView.tsx)    │  ║
+- ║  │ 🔍 BACKEND BLOCKER: Live 404 on /api/log-ip waiting on Blaze & Deploy  │  ║
++ ║  │ Branch Context: main                                                 │  ║
++ ║  │ Target: ProfileView.tsx (QR code), functions/index.js (#1 Blaze)     │  ║
 + ║  └──────────────────────────────────────────────────────────────────────┘  ║
 + ╚════════════════════════════════════════════════════════════════════════════╝
 + ╔═════════════════════════════════════════════════════╗
@@ -40,7 +40,7 @@
 
 | Priority | Issue / Task | Description | Status | Target / Destination |
 | :---: | :--- | :--- | :--- | :--- |
-| <span style="color:#0051ae;font-weight:bold;">🚀 🎯 (Active)</span> | **<span style="color:#0051ae;">#14 (Highest)</span>** | **Enable IP security log & MFA enforcement borrowing KC Rhythm architecture** | 🟢 **Ready to Implement** | `functions/index.js`, `SecurityLogView.tsx` |
+| <span style="color:#0051ae;font-weight:bold;">🚀 🎯 (Active)</span> | **<span style="color:#0051ae;">#14 (Highest)</span>** | **IP Security Log (blocked on #1) & MFA QR code integration (KC Rhythm parity)** | 🟢 **Ready to Implement** | `ProfileView.tsx`, `functions/index.js` |
 | 💊 | **#16 (Queued)** | Investigate medication max 24h capacity limits & unit scale validation | 💡 Queued | `LibraryView.tsx`, `LogEditor.tsx`, `meds.ts` |
 | 🌿 | **#15 (Completed)** | Adopt dual-branch git workflow (`main-dev` staging -> `main` sync) | ✅ **COMPLETED (2026-11-14 17:43 EST)** | `main-dev` created & README updated |
 | 🔏 | **Commit Verification** | Configure SSH commit signing for verified badges (Key title in notes) | ✅ **COMPLETED (2026-11-14 17:18 EST)** | Cloud git config / GitHub keys (`1decf1b`) |
@@ -49,16 +49,18 @@
 | 🥈 | **#13 (Completed)** | Add exercise ball as an ergonomic aid under Log Posture | ✅ **COMPLETED (2026-11-14 18:53 EST)** | PR #17 merged (`3adf624`) |
 | 🥉 | **#2 (High)** | Track logged weight against height & gender ratio (BMI / IBW) | 🟡 Backlog | Profile, Weight Log & Trends View |
 | 4️⃣ | **#9 (High)** | 3D anatomical body map with pinpoint pain & clinical agent supervision | 💡 Queued | Profile 3D Body Map, Multi-Agent Engine |
-| 5️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement | 🟡 Backlog | Firebase Identity Platform / Functions |
+| 5️⃣ | **#3 (Medium)** | Multi-factor authentication (MFA) server-side enforcement (Identity Platform token lock) | 🟡 Backlog | Firebase Identity Platform / Functions |
 | 6️⃣ | **#10 (Completed)** | Trends: Stretch (adaptive time grouping + Daily Stretches breakdown) | 🟢 Closed Candidate | TrendsView (`src/components/TrendsView.tsx`) |
 | 7️⃣ | **#5 (Under Review)** | Mood & cognition intraday points & 1–5 emoji labels | 🟡 Under Review | Closed candidate pending user testing |
 | 8️⃣ | **#6 (Completed) & #8 (Review)** | Deep flat-foot squat & auto-log completed; sequential 90° motion review | ✅ **#6 CLOSED** / 🟢 **#8 Ready** | `src/components/StretchVisual.tsx`, Library |
-| 9️⃣ | **#1 (Linked to #14)** | IP Security Log Cloud Function & Blaze deployment (Enables #14) | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
+| 9️⃣ | **#1 (Linked to #14)** | Upgrade to Blaze plan & deploy Cloud Function `logUserIP` (Unblocks #14) | ⏸️ On Hold | Cloud Functions (`logUserIP`) on Blaze |
 | 🏆 | **#12 (Completed)** | Open Source Preparation: Public visibility switch, MIT License & audit sign-off | ✅ **COMPLETED WIN (2026-11-14 16:52 EST / 21:52 UTC)** | GitHub repo public |
 
 ---
 
 ### 🏆 Recently Completed Milestones
+
+- [x] **Live Security Audit & KC Rhythm Parity Analysis (Issue #1, #3, #14)**: Verified live endpoint contrast (`kc-rhythm` 401 active vs. `kc-spineguard` 404 undeployed). Clarified task split between immediate client QR code UI (#14), Blaze Cloud Function deployment (#1), and long-term Identity Platform token gating (#3) at **November 25, 2026 — 6:06 PM EST / 23:06 UTC**.
 
 - [x] **Automated Stretch Hold Logging (Issue #6)**: Implemented instant auto-logging to Firestore (`History` and `Trends`) upon timer countdown completion with visual emerald confirmation badge, merged via PR #18 into `main-dev` and fast-forwarded to `main` at **November 14, 2026 — 7:13 PM EST / 00:13 UTC** (`6ba2998`).
 - [x] **Dotfiles Workflow Tiering (Direct vs. PR Flow)**: Updated `git-branching-workflow` in `dotfiles` (`11b1cd1`) defining Tier 1 (Direct to `main-dev` for rapid fixes) and Tier 2 (Topic Branch & PR for large features/CI isolation).
