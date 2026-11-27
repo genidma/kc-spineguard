@@ -25,13 +25,14 @@ service cloud.firestore {
 
     function isValidMed(d, medId) {
       return d.keys().hasOnly(['id', 'name', 'kind', 'strength', 'unit', 'typicalDose', 'maxDailyDose',
-                               'minHoursBetween', 'scheduleTimes', 'active', 'notes', 'createdAt', 'updatedAt'])
+                               'minHoursBetween', 'scheduleTimes', 'isPainReliever', 'active', 'notes', 'createdAt', 'updatedAt'])
         && d.keys().hasAll(['id', 'name', 'kind', 'unit', 'active'])
         && d.id == medId
         && d.name is string && d.name.size() > 0 && d.name.size() <= 120
         && d.kind is string && d.kind.size() <= 40
         && d.unit is string && d.unit.size() <= 20
         && d.active is bool
+        && (!d.keys().hasAny(['isPainReliever']) || d.isPainReliever is bool)
         && (!d.keys().hasAny(['maxDailyDose']) || d.maxDailyDose == null || d.maxDailyDose is number)
         && (!d.keys().hasAny(['minHoursBetween']) || d.minHoursBetween == null || d.minHoursBetween is number)
         && (!d.keys().hasAny(['scheduleTimes']) || (d.scheduleTimes is list && d.scheduleTimes.size() <= 12))

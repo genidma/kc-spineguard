@@ -56,6 +56,7 @@ export interface MedData {
   kind: string;
   dose: number;
   unit: string;
+  isPainReliever?: boolean;
   reason?: string;
   reliefAfter?: number; // 0-10
   overrideWarning?: boolean;
@@ -124,6 +125,7 @@ export interface Medication {
   maxDailyDose?: number | null; // in `unit`, rolling 24h
   minHoursBetween?: number | null;
   scheduleTimes?: string[]; // "08:00"
+  isPainReliever?: boolean;
   active: boolean;
   notes?: string;
   createdAt?: string;

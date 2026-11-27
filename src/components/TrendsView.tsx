@@ -17,13 +17,13 @@ import { TrendingUp, TriangleAlert } from 'lucide-react';
 import { useAppData } from '../hooks/useAppData';
 import { dayKey, daysAgoIso, fmtDate, fmtTime } from '../lib/time';
 import { summarize } from '../lib/logMeta';
-import type { CognitionData, FallData, MoodData, PainData, StretchData, WeightData } from '../lib/types';
+import type { CognitionData, FallData, MedData, MoodData, PainData, StretchData, WeightData } from '../lib/types';
 import { Chips, Empty, PageHeader, SectionTitle, card } from './ui';
 
 type Range = 1 | 2 | 3 | 7 | 30 | 90 | 180;
 
 export function TrendsView() {
-  const { logs, settings, ensureRange } = useAppData();
+  const { logs, settings, meds, ensureRange } = useAppData();
   const [days, setDays] = useState<Range>(30);
 
   useEffect(() => {
@@ -78,6 +78,9 @@ export function TrendsView() {
       });
     }
 
+    // Quick lookup for whether medication is a pain reliever
+    const medMap = new Map(meds.map((m) => [m.id, m]));
+
     // Iterate oldest -> newest so latest weight of day wins
     for (let i = windowLogs.length - 1; i >= 0; i--) {
       const l = windowLogs[i];
@@ -89,7 +92,17 @@ export function TrendsView() {
         b.painCount += 1;
         b.painMax = b.painMax === null ? v : Math.max(b.painMax, v);
       } else if (l.type === 'med') {
-        b.medCount += 1;
+        const medData = l.data as MedData;
+        const medDef = medMap.get(medData.medicationId);
+        // Medication counts if not explicitly flagged as non-pain reliever and not a supplement
+        const isPainReliever =
+          medData.isPainReliever ??
+          medDef?.isPainReliever ??
+          (medData.kind !== 'Supplement' && medDef?.kind !== 'Supplement');
+
+        if (isPainReliever) {
+          b.medCount += 1;
+        }
       } else if (l.type === 'stretch') {
         b.stretchMin += ((l.data as StretchData).durationSec ?? 0) / 60;
       } else if (l.type === 'weight') {
@@ -128,7 +141,7 @@ export function TrendsView() {
         focus: b.cogCount ? Math.round((b.focusSum / b.cogCount) * 10) / 10 : null,
       };
     });
-  }, [windowLogs, days, settings.weightUnit]);
+  }, [windowLogs, days, settings.weightUnit, meds]);
 
   const daysAboveThreshold = useMemo(
     () => daily.filter((d) => d.maxPain !== null && d.maxPain > settings.painThreshold).length,

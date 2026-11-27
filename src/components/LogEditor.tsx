@@ -70,6 +70,7 @@ function defaults(type: LogType, ctx: ReturnType<typeof useAppData>): Draft<LogT
         kind: m?.kind ?? '',
         dose: m?.typicalDose ?? 0,
         unit: m?.unit ?? 'mg',
+        isPainReliever: m?.isPainReliever,
       } satisfies MedData;
     }
     case 'mood':
@@ -324,7 +325,14 @@ function LogForm({ type, existing, onClose, prefill }: LogEditorProps) {
                 value={data.medicationId}
                 onChange={(e) => {
                   const m = meds.find((x) => x.id === e.target.value);
-                  set({ medicationId: m?.id, medicationName: m?.name, kind: m?.kind, unit: m?.unit, dose: m?.typicalDose ?? data.dose });
+                  set({
+                    medicationId: m?.id,
+                    medicationName: m?.name,
+                    kind: m?.kind,
+                    unit: m?.unit,
+                    dose: m?.typicalDose ?? data.dose,
+                    isPainReliever: m?.isPainReliever,
+                  });
                   setAck(false);
                 }}
               >

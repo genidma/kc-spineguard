@@ -72,6 +72,11 @@ function MedicationsTab() {
                   <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300">
                     {m.kind}
                   </span>
+                  {m.isPainReliever === false && (
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                      Non-pain med
+                    </span>
+                  )}
                   {!m.active && <span className="text-[10px] font-bold uppercase text-[#88909f]">Archived</span>}
                 </div>
                 <p className="text-xs text-[#424753] dark:text-gray-400 mt-1">
@@ -134,6 +139,7 @@ function MedEditorModal({
   const [maxDailyDose, setMaxDailyDose] = useState('');
   const [minHoursBetween, setMinHoursBetween] = useState('');
   const [scheduleText, setScheduleText] = useState('');
+  const [isPainReliever, setIsPainReliever] = useState(true);
   const [active, setActive] = useState(true);
   const [notes, setNotes] = useState('');
 
@@ -147,6 +153,7 @@ function MedEditorModal({
     setMaxDailyDose(existing?.maxDailyDose != null ? String(existing.maxDailyDose) : '');
     setMinHoursBetween(existing?.minHoursBetween != null ? String(existing.minHoursBetween) : '');
     setScheduleText((existing?.scheduleTimes ?? []).join(', '));
+    setIsPainReliever(existing?.isPainReliever ?? (existing ? existing.kind !== 'Supplement' : true));
     setActive(existing?.active ?? true);
     setNotes(existing?.notes ?? '');
   }, [open, existing]);
@@ -169,6 +176,7 @@ function MedEditorModal({
       maxDailyDose: maxDailyDose ? Number(maxDailyDose) : null,
       minHoursBetween: minHoursBetween ? Number(minHoursBetween) : null,
       scheduleTimes,
+      isPainReliever,
       active,
       notes: notes.trim() || undefined,
     });
@@ -182,7 +190,19 @@ function MedEditorModal({
         </Field>
         <div className="grid grid-cols-2 gap-3">
           <Field label="Kind / class">
-            <select className={inputCls} value={kind} onChange={(e) => setKind(e.target.value)} data-testid="med-form-kind">
+            <select
+              className={inputCls}
+              value={kind}
+              onChange={(e) => {
+                const newKind = e.target.value;
+                setKind(newKind);
+                // When adding new or if switching kind, intelligently suggest isPainReliever
+                if (!existing) {
+                  setIsPainReliever(newKind !== 'Supplement');
+                }
+              }}
+              data-testid="med-form-kind"
+            >
               {MED_KINDS.map((k) => (
                 <option key={k} value={k}>
                   {k}
@@ -211,10 +231,24 @@ function MedEditorModal({
         <Field label="Reminder times (HH:MM, comma-separated)">
           <TextInput value={scheduleText} onChange={(e) => setScheduleText(e.target.value)} placeholder="08:00, 20:00" />
         </Field>
-        <label className="flex items-center gap-2 text-sm font-bold">
-          <input type="checkbox" checked={active} onChange={(e) => setActive(e.target.checked)} />
-          Active medication
-        </label>
+        <div className="space-y-2 pt-1">
+          <label className="flex items-center gap-2 text-sm font-bold">
+            <input
+              type="checkbox"
+              checked={isPainReliever}
+              onChange={(e) => setIsPainReliever(e.target.checked)}
+              data-testid="med-form-pain-reliever"
+            />
+            Include in 'Pain vs. medications' trends
+          </label>
+          <p className="text-xs text-[#88909f] pl-6 -mt-1">
+            Uncheck for non-pain medications (e.g. vitamins, supplements, cholesterol meds).
+          </p>
+          <label className="flex items-center gap-2 text-sm font-bold">
+            <input type="checkbox" checked={active} onChange={(e) => setActive(e.target.checked)} />
+            Active medication
+          </label>
+        </div>
         <Field label="Notes">
           <TextInput value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Take with food..." />
         </Field>
